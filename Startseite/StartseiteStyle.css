@@ -1,0 +1,51 @@
+*{
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+td {
+    margin-top: 5mm;
+    margin-left: 5mm;
+    margin-right: 5mm;
+    padding: 2mm;
+}
+
+.Eingabefeld {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #013761;
+    background-color: white;
+    margin-right: 15mm2
+}
+
+body { 
+    background-color: #013257;
+}
+
+table {
+    text-align: center;
+}
+
+div {
+    background-color: rgb(240, 240, 240, 0.97);
+    color: #3c3c3c;
+    font-size: 20px;
+    width: 100%-10mm;
+    height: 100%;
+    margin: 5mm;
+    padding: 20px;
+}
+#Überschrift {
+    font-size: 40px;
+}
+button {
+    background: linear-gradient(180deg,#01508d, #013257);
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #013761;
+    height: 30px;
+    width: 250px;
+    font-size: 20px;
+    color: white;
+}

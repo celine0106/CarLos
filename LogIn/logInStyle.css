@@ -1,0 +1,62 @@
+*{
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+body {
+    background-image: url(sportwagen5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div {
+    background-color: rgb(240, 240, 240, 0.7);
+    color: #3c3c3c;
+    font-size: 20px;
+    width: 500px;
+    height: 600px;
+    margin-left: 100px;
+    margin-top: 50px;
+    padding: 50px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+p {
+    font-size: 40px;
+    margin-bottom: 3px;
+}
+
+form {
+    margin-top: 30px;
+}
+
+#username, #pwd {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #013761;
+    background-color: white;
+    height: 20px;
+}
+
+#bAnmelden {
+    background: linear-gradient(180deg,#01508d, #013257);
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #013761;
+    height: 30px;
+    width: 300px;
+    font-size: 20px;
+    color: white;
+}
+
+a {
+    font-size: 20px;
+    color: #01508d ;
+}
+
+.submit {
+    margin-top: 30px;
+}
+

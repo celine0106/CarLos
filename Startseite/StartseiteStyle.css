@@ -20,13 +20,16 @@ td {
     height: 5mm;
 }
 
+#Kilometer, #Jahr {
+    margin-right:0mm;
+}
 #Preis, #Kilometer, #Jahr {
     width: 41.8mm;
     height: 6mm;
 }
 
 body { 
-    background-color: #013257;
+    background-color: rgba(188, 187, 196, 0.973);
 }
 
 table {
@@ -34,13 +37,13 @@ table {
 }
 
 div {
-    background-color: rgb(240, 240, 240, 0.90);
+    background-color: rgba(240, 240, 240, 0.897);
     color: #3c3c3c;
     font-size: 20px;
-    width: 100%-10mm;
+    width: 980px;
     height: 100%;
-    margin: 5mm;
     padding: 20px;
+    margin: 0 auto;
 }
 #Überschrift {
     font-size: 40px;

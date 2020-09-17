@@ -1,0 +1,39 @@
+*{
+    font-family: Copperplate Gothic, serif;
+}
+body { 
+    background-color: rgba(188, 187, 196, 0.973);
+}
+
+div {
+    background-color: rgba(240, 240, 240, 0.897);
+    color: #3c3c3c;
+    font-size: 20px;
+    width: 980px;
+    height: 100%;
+    padding: 20px;
+    margin: 0 auto;
+}
+#Überschrift {
+    font-size: 40px;
+}
+#PlusButton{
+    background: linear-gradient(180deg,#01508d, #014b6d);
+    border-radius: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    height: 35px;
+    width: 50px;
+    font-size: 20px;
+    color: white;
+}
+div {
+    background-color: rgba(240, 240, 240, 0.897);
+    color: #3c3c3c;
+    font-size: 20px;
+    width: 980px;
+    height: 100%;
+    padding: 20px;
+    margin: 0 auto;
+}

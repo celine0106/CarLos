@@ -2,74 +2,43 @@
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
+body {
+    background-image: url('BackgroundBild.jpg');
+    background-position: 20% 15%;
+    background-size: cover;
+   
+    
+}
+
+
+
 .flex-container {
     display: flex;
     flex-direction: column;
-}
-
-
-
-body {
-    background-image: url(16.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-div.anmeldung {
-    background-color: rgb(240, 240, 240, 0.7);
-    color: #3c3c3c;
-    background-size: cover;
-    font-size: 20px;
-    
-    
-    padding: 50px;
-    
+    background-color:rgb(255, 255, 255, 0.6);
+    margin-top: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 20px;
     text-align: center;
+    box-shadow: 10px 10px 10px #26719c;
 }
 
-p {
-    font-size: 40px;
-    margin-bottom: 3px;
-}
-
-form {
-    margin-top: 30px;
-}
-
-#username, #pwd {
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #013761;
-    background-color: white;
-    height: 20px;
-}
-
-#bAnmelden {
-    background: linear-gradient(180deg,#01508d, #013257);
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #013761;
-    height: 30px;
-    width: 300px;
+#begrueßung {
     font-size: 20px;
-    color: white;
-}
-
-a {
-    font-size: 20px;
-    color: #01508d ;
-}
-
-.submit {
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 table {
     text-align: right;
-    margin-left: 60px;
+    margin-left: 580px;
+    
 }
+
+#anmeldung {
+    margin-bottom: 40px;
+}
+
+
 
 

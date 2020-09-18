@@ -1,41 +1,43 @@
-<html>
+<html lang="en">
     <head>
+        <title>LogIn</title>
         <link rel="stylesheet" href="logInStyle.css" />
-        <body>
-            <div class="felx-container">
-                <div class="anmeldung">
-                    <p>Anmeldung</p>  <br/>
-                    Willkommen bei Carlos <br/>
-                    Bitte melden Sie sich im folgendem mit Ihrem Benutzernamen und Ihrem Passwort an um loszulegen
-                    <form>
+        <body style="width: 100%;">
+            <header>
+                <div class="flex-container">
+                    <div id="begrueßung">
+                        <p style="font-size: 30px;">Anmeldung</p>
+                        Willkommen bei Carlos! <br>
+                        Bitte melden Sie sich im folgendem mit Ihrem Benutzernamen und Ihrem Passwort an um loszulegen
+                    </div>
+                    <div id="anmeldung">
                         <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <label for="username">Benutzername</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="username" name="username"><br>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="pwd">Passwort</label>
-                                    </td>
-                                    <td>
-                                        <input type="password" id="pwd" name="pwd"> <br/>
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-
+                            <tr>
+                                <td>
+                                    <label for="username">Benutzername</label>
+                                </td>  
+                                <td>
+                                    <input type="text" id="username" name="username">
+                                </td>      
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="pwd">Passwort</label>
+                                </td>
+                                <td>
+                                    <input type="password" id="pwd" name="pwd">
+                                </td>
+                            </tr>
+                        </table> 
+                    </div>
+                    <div id="button">
                         <input type="submit" id="bAnmelden" class="submit" value="Anmelden">
-                    </form> 
-
-                    <p> <a href="file:///C:/CarLos/LogIn/logInIndex.html?username=&pwd=">Noch nicht registriert?</a></p>
+                    </div>
+                    <div id="registration">
+                        <p> <a href="file:///C:/CarLos/LogIn/logInIndex.html?username=&pwd=">Noch nicht registriert?</a></p>
+                    </div>
                 </div>
-        </div>
+            </header>
         </body>
     </head>
 </html>

@@ -2,22 +2,29 @@
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
-body {
-    background-image: url(sportwagen5.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+.flex-container {
+    display: flex;
+    flex-direction: column;
 }
 
-div {
+
+
+body {
+    background-image: url(16.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+div.anmeldung {
     background-color: rgb(240, 240, 240, 0.7);
     color: #3c3c3c;
+    background-size: cover;
     font-size: 20px;
-    width: 500px;
-    height: 600px;
-    margin-left: 100px;
-    margin-top: 50px;
+    
+    
     padding: 50px;
-    box-sizing: border-box;
+    
     text-align: center;
 }
 
@@ -63,5 +70,6 @@ a {
 table {
     text-align: right;
     margin-left: 60px;
-}
+
+
 

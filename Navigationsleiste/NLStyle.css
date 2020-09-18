@@ -3,7 +3,7 @@
 }
 p {
     font-family: verdana;
-    font-size: 20px;
+    font-size: 30px;
   }
 ul.sidenav {
   list-style-type: none;
@@ -12,7 +12,7 @@ ul.sidenav {
   width: 100%;
   background-color: #bdc2c2;
   position: fixed;
-  height: 4%;
+  height: 10%;
   overflow: auto;
 }
 ul {

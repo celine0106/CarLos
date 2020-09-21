@@ -3,25 +3,24 @@
 }
 
 body {
-    background-image: url('BackgroundBild.jpg');
-    background-position: 20% 15%;
+    background-image: url('backgroundPicture.jpg');
+    background-position: 20% 40%;
     background-size: cover;
    
     
 }
 
-
-
 .flex-container {
     display: flex;
     flex-direction: column;
-    background-color:rgb(255, 255, 255, 0.6);
+    background-color: rgb(180, 180, 180, 0.8);
     margin-top: 20px;
     margin-right: 40px;
     margin-left: 40px;
     margin-bottom: 20px;
     text-align: center;
-    box-shadow: 10px 10px 10px #26719c;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    
 }
 
 #begrueßung {
@@ -39,6 +38,37 @@ table {
     margin-bottom: 40px;
 }
 
+#bAnmelden {
+    border: none;
+    font-size: 18px;
+    background: rgb(64, 80, 36);
+    padding: 10px 40px;
+    border-radius: 4px;
+    color: white;
+  
+}
+#bAnmelden:hover {
+    border: none;
+    font-size: 18px;
+    background: rgb(64, 80, 36);
+    padding: 10px 40px;
+    border-radius: 4px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    color: white;
+}
+
+#registration{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+a{
+    color: rgb(44, 54, 24);
+}
+
+a:hover {
+    color: black
+}
 
 
 

@@ -15,8 +15,8 @@ body {
     flex-direction: column;
     background-color: rgb(180, 180, 180, 0.8);
     margin-top: 20px;
-    margin-right: 40px;
-    margin-left: 40px;
+    margin-right: 150px;
+    margin-left: 150px;
     margin-bottom: 20px;
     text-align: center;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
@@ -30,7 +30,7 @@ body {
 
 table {
     text-align: right;
-    margin-left: 580px;
+    margin-left: 458px;
     
 }
 

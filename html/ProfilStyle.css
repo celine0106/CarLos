@@ -1,0 +1,59 @@
+*{
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+.Flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body { 
+    background-color: rgba(49, 48, 48, 0.041);
+    background-image: url('marmor01-978x400.jpg');
+    background-position: 20% 15%;
+    background-size: cover;  
+    background-blend-mode: darken;
+}
+
+.Navigationsleiste {
+    border: 0px none;
+    width: 1018px;
+    height: 65px;
+    align-content: center;
+    overflow: hidden; 
+    
+}
+iframe {
+    border: none;
+    width: 1018px;
+    height: 750px;
+}
+
+.Seiteninhalt {
+    background-color: rgb(255, 255, 255);
+    color: #3c3c3c;
+    font-size: 20px;
+    width: 980px;
+    padding: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.Bearbeitung {
+    height:20px;
+    width:20px;
+}
+td {
+    margin-top: 5mm;
+    margin-left: 5mm;
+    margin-right: 5mm;
+    padding: 2mm;
+}
+
+#Profilbild {
+    height: 100px;
+    padding-right: 20px;
+}
+

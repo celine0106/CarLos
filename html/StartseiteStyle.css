@@ -1,5 +1,5 @@
 *{
-    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 td {
@@ -63,7 +63,7 @@ table {
     width: 10%;
 }
 .Seiteninhalt {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.644);
     color: #3c3c3c;
     font-size: 20px;
     width: 980px;

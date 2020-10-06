@@ -19,7 +19,7 @@ body {
 .Navigationsleiste {
     border: 0px none;
     width: 1018px;
-    height: 65px;
+    height: 50px;
     align-content: center;
     overflow: hidden; 
     
@@ -31,10 +31,10 @@ iframe {
 }
 
 .Seiteninhalt {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.644);
     color: #3c3c3c;
     font-size: 20px;
-    width: 980px;
+    width: 1018px;
     padding: 20px;
     margin-bottom: 40px;
     display: flex;

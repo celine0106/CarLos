@@ -10,7 +10,7 @@ body {
     background-color: rgba(255, 255, 255, 0.644);
     color: #3c3c3c;
     font-size: 20px;
-    width: 980px;
+    width: 1018px;
     height: 100%;
     padding: 20px;
     margin: 0 auto;
@@ -45,11 +45,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 .Navigationsleiste {
     border: 0px none;
     width: 1018px;
-    height: 65px;
+    height: 50px;
     align-content: center;
     overflow: hidden;   
 }

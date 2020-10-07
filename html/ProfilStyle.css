@@ -10,12 +10,12 @@
 
 body { 
     background-color: rgba(173, 148, 117, 0.8);
-    background-image: url('marmor01-978x400.jpg');
-    background-position: 20% 15%;
-    background-size: cover;  
-    background-blend-mode: darken;
+    
 }
-
+ button {
+     border:none;
+     background-color:  rgba(255, 255, 255, 0.03);
+ }
 .Navigationsleiste {
     border: 0px none;
     width: 1018px;

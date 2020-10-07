@@ -19,10 +19,10 @@
             </div>
             
             <div id= "Daten"> 
-                <form>
-                    <table>
-                        <tbody>
-                            <tr>
+                <table>
+                    <tbody>
+                        <tr>
+                            <form id="v">
                                 <td>
                                     <label for="Vorname">Vorname </label>
                                 </td>
@@ -30,10 +30,12 @@
                                     <input type="text" name= "Vorname" id="Vorname" value="" readonly>
                                 </td>
                                 <td>
-                                    <i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i>
+                                    <button type="submit" id="vnameb"><i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i></button>
                                 </td>
-                            </tr>
-                            <tr>
+                             </form>  
+                        </tr>
+                        <tr>
+                            <form id="n"> 
                                 <td>
                                     <label for="Nachname">Nachname </label>
                                 </td>
@@ -41,10 +43,12 @@
                                     <input type="text" name= "Nachname" id="Nachname" value="" readonly>
                                 </td>
                                 <td>
-                                    <i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i>
+                                    <button type="submit" id="nnameb"><i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i></button>
                                 </td>
-                            </tr>
-                            <tr>
+                            </form>
+                        </tr>
+                        <tr>
+                            <form id="t">
                                 <td>
                                     <label for="Telefon">Telefon </label>
                                 </td>
@@ -52,10 +56,12 @@
                                     <input type="tel" name= "Telefon" id="Telefon" value="" readonly>
                                 </td>
                                 <td>
-                                    <i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i>
+                                    <button type="submit" id="telb"><i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i></button>
                                 </td>
-                            </tr>
-                            <tr>
+                            </form>
+                        </tr>
+                        <tr>
+                            <form id="e">
                                 <td>
                                     <label for="E-Mail">Email </label>
                                 </td>
@@ -63,18 +69,15 @@
                                     <input type="email" name= "Email" id="Email" value="" readonly>
                                 </td>
                                 <td>
-                                    <i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>             
-
+                                    <button type="submit" id="emailb"><i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i></button>
+                                </td> 
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>    
             </div>
-
         </div>
-
     </div>
-    
+    <script src="ProfilScript.js"></script>
 </body>
 </html>

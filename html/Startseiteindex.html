@@ -115,21 +115,34 @@
            </table>
         </br>
            <p> 
-               <input type = "button" id="Suche" value= "Angebote suchen">
+               <input type = "submit" id="Suche" value= "Angebote suchen">
             </p>
            
         </form>
         </div>
        
+        
         <div class ="Seiteninhalt" id="Angebote">
             <p id="Unterüberschrift">Unser Top-Angebot:</p>
-            <div >
-                <p>
-                    <img src="Audibild.jpg" class="bild" id="Angebotsbild"> </img> Audi A3 15.000€ 
-                </p>
+            <div id="erstesAngebot">
+                <div id="Angebotsbild">
+                    <img src="Audibild.jpg" class="bild" id="Angebotsbild"> </img>
+                </div>
+
+                <div id="Angebotstext">
+                    <div id="ersteZeile"> 
+                        <p class ="Basisdaten" id="MarkeA">Audi </p>
+                        <p class ="Basisdaten" id="ModellA">A3 </p>
+                        <p class ="Basisdaten" id="PreisA">15.000€ </p>
+                    </div>
+                    <p id="zweiteZeile">
+                        Hier steht eine kurze Beschreibung
+                    </p>
+                </div>
+                     
             </div>
         </div>
     </div>
-   
+  <script src="StartseiteScript.js"/>
 </body>
 </html>

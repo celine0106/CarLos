@@ -48,10 +48,6 @@ iframe {
 
 body { 
     background-color: rgba(173, 148, 117, 0.8);
-    background-image: url('marmor01-978x400.jpg');
-    background-position: 20% 15%;
-    background-size: cover;  
-    background-blend-mode: darken;
 }
 
 table {
@@ -59,9 +55,10 @@ table {
 }
 
 .bild {
-    height: 10%;
-    width: 10%;
+    height: 100px;
+    width: 150px;
 }
+
 .Seiteninhalt {
     background-color: rgba(255, 255, 255, 0.644);
     color: #3c3c3c;
@@ -107,8 +104,30 @@ table {
     font-size:30px;
 }
 #Angebotsbild {
-    margin-right: 50px;
+    margin-right: 12px;
 }
 #Angebote {
     height: 10%;
+}
+
+#erstesAngebot {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start ;
+}
+
+#Angebotsbild {
+    margin-right: 12px;
+}
+#ersteZeile {
+    display: flex;
+    flex-direction: row;
+}
+
+#zweiteZeile {
+    margin-top: 0mm;
+}
+
+.Basisdaten {
+    margin-right: 5px;
 }

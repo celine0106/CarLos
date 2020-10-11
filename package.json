@@ -1,0 +1,26 @@
+{
+  "name": "carlos",
+  "version": "1.0.0",
+  "description": "\"# CarLos\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celine0106/CarLos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/celine0106/CarLos/issues"
+  },
+  "homepage": "https://github.com/celine0106/CarLos#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5"
+  }
+}

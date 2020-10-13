@@ -59,3 +59,83 @@ iframe {
     width: 1100px;
     height: 750px;
 }
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    margin: auto;
+    
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #2b2b2b;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  .modal-header {
+    padding: 1px 16px;
+    text-align: center;
+  }
+
+  .modal-body {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-spacing: 20px;
+    }
+
+  .modal-footer {
+    padding: 2px 16px;
+  }
+
+  .cancelbtn {
+      background-color: #888;
+      border-style: solid;
+      border-color: #888;
+      color: white;
+  }
+
+  .savebtn {
+      background-color: darkolivegreen;
+      border-style: solid;
+      border-color: darkolivegreen;
+      color: white;
+  }
+ 
+

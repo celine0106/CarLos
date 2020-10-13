@@ -3,44 +3,27 @@
         <title>LogIn</title>
         <link rel="stylesheet" href="../css/logInStyle.css" />
         <body style="width: 100%;">
-            <header>
-                <div class="flex-container">
-                    <div id="begrueßung">
-                        <p style="font-size: 25px;">Anmeldung</p>
-                        Willkommen bei Carlos! <br>
-                        Bitte melden Sie sich im folgendem mit Ihrem Benutzernamen und Ihrem Passwort an um loszulegen
+                <div id ="formbox" class="form-box">
+                    <div class="button-box">
+                        <div id="btn"></div>
+                        <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                        <button type="button" class="toggle-btn" onclick="register()">Registration</button>
                     </div>
-                    <div id="anmeldung">
-                        <form>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <label for="username" style="font-size: 17px;">Benutzername</label>
-                                    </td>  
-                                    <td>
-                                        <input type="text" id="username" name="username">
-                                    </td>      
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label for="pwd" style="font-size: 17px;">Passwort</label>
-                                    </td>
-                                    <td>
-                                        <input type="password" id="pwd" name="pwd">
-                                    </td>
-                                </tr>
-                            </table> 
-                        </div>
-                        <div id="button">
-                            <input type="submit" id="bAnmelden" class="submit" value="Anmelden">
-                        </div>
-                        </form>
-                        
-                    <div id="registration">
-                        <p> <a href="registration.html"> Noch nicht registriert?</a></p>
-                    </div>
+                    <form id="login" class="input-group">
+                        <input class="input-field" type="text" id="username" name="username" placeholder="Benutzername">
+                        <input class="input-field" type="password" id="pwd" name="pwd" placeholder="Passwort">  
+                        <input type="submit" id="bAnmelden" class="submit" value="Anmelden">
+                    </form>
+                    <form id="register" class="input-group">
+                        <input class="input-field" type="text" id="vorname" name="vorname" placeholder="Vorname">
+                        <input class="input-field" type="text" id="nachname" name="nachname" placeholder="Nachname">
+                        <input class="input-field" type="text" id="username" name="username" placeholder="Benutzername">
+                        <input class="input-field" type="password" id="pwd" name="pwd" placeholder="Passwort">
+                        <input class="input-field" type="text" id="tel" name="tel" placeholder="Telefonnummer">
+                        <input class="input-field" type="email" id="email" name="email" placeholder="E-Mail">
+                        <input type="submit" id="bRegistrieren" class="submit" value="Registrieren">
+                    </form>
                 </div>
-            </header>
             <script src="LoginScript.js"></script>
         </body>
     </head>

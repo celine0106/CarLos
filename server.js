@@ -19,7 +19,7 @@ mysql
     connection = con;
   });
 
-app.use(express.static("html"));
+app.use(express.static("public"));
 app.use(express.json());
 
 app.use(

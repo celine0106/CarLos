@@ -18,6 +18,8 @@ function login(){
 }
 const button = document.querySelector('form');
 
+const createForm = document.querySelector('#register');
+
 button.addEventListener("submit", (evt)=> {
     evt.preventDefault();
     const values = Object.fromEntries(new FormData(evt.target));
@@ -46,4 +48,27 @@ button.addEventListener("submit", (evt)=> {
     .catch((e) => {
       alert(`WHOOPS: ${e}`);
     });
+});
+
+createForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  console.log("aaa");
+  
+  const values = Object.fromEntries(new FormData(evt.target));
+
+  console.log(values);
+
+  fetch("/register", {
+    method: "POST",
+    body: JSON.stringify(values),
+    headers: {
+      "content-type": "application/json",
+    },
+  }).then((res) => {
+    console.log(res.ok);
+    window.location = "loginINdex.html";
+  });
+
+  console.log("FORM SUBMITTED", values);
 });

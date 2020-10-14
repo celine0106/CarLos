@@ -24,7 +24,13 @@ window.onclick = function(event) {
   }
 }
 
-const createForm = document.querySelector('#meinAngebot');
+const createForm = document.querySelector('#aerstellen');
+const abbrechenButton = document.querySelector('#abbrechnen');
+
+abbrechenButton.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  window.location = "MAIndex.html";
+});
 
 createForm.addEventListener("submit", (evt) => {
   evt.preventDefault();

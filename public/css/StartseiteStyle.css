@@ -20,12 +20,12 @@ td {
     height: 50px;
     align-content: center;
     overflow: hidden; 
-    
 }
 iframe {
     border: none;
     width: 1100px;
     height: 750px;
+    
 }
 .Eingabefeld {
     border-radius: 3px;
@@ -66,6 +66,7 @@ table {
     width: 980px;
     padding: 20px;
     margin-bottom: 40px;
+    
 }
 #Filter {
     height: 50%;
@@ -85,6 +86,7 @@ table {
     width: 250px;
     font-size: 20px;
     color: white;
+    
 }
 
  #Suche:hover{
@@ -130,4 +132,8 @@ table {
 
 .Basisdaten {
     margin-right: 5px;
+}
+
+#Angebotsliste {
+    list-style-type: none;
 }

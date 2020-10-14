@@ -4,8 +4,8 @@ const list = document.querySelector("#Angebotsliste");
 
 button.addEventListener("submit", (evt)=> {
     evt.preventDefault();
-    const values = Object.fromEntries(new FormData(evt.target));
-    console.log(values);
+    var filter = Object.fromEntries(new FormData(evt.target));
+    console.log(filter);
     document.querySelector('#Unterüberschrift').innerHTML = 'Angebote: ';
     var an = document.getElementById("eins");
     an.remove();
@@ -22,13 +22,13 @@ button.addEventListener("submit", (evt)=> {
       angebote.forEach((angebot) => {
         const listItem = document.createElement("li");
         console.log(angebot.ID);
-        listItem.textContent = angebot.Marke + " "+ angebot.Modell+ " " + angebot.Preis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + "\n";
-        listItem.append( angebot.Beschreibung);
+        listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + angebot.Preis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
+        //listItem.append( angebot.Beschreibung);
         list.appendChild(listItem);
+        
       });
     })
     .catch((e) => {
       alert(`WHOOPS: ${e}`);
     });
 });
-

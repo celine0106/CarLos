@@ -110,4 +110,28 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });*/
 
+//Insert an Angebot 
+app.post("/meineAngebote", async (req, res) => {
+  const [
+    rows,
+  ] = await connection.execute(
+    "INSERT INTO angebot (Preis, Kilometer, Ort, Erstzulassung, Bild, Beschreibung, Autor, Marke, Modell) \
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]
+  );
+
+  res.json({
+    Preis: req.body.preis,
+    Kilometer: req.body.kilometer,
+    Ort: req.body.ort,
+    Erstzulassung: req.body.erstz,
+    Bild: req.body.bild,
+    Beschreibung: req.body.bes,
+    Autor: req.body.autor,
+    Marke: req.body.marke,
+    Modell: req.body.modell,
+  });
+});
+
+
 app.listen(5100);

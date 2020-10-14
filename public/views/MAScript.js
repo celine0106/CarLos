@@ -23,3 +23,28 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+const createForm = document.querySelector('#meinAngebot');
+
+createForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  console.log("jj");
+  
+  const values = Object.fromEntries(new FormData(evt.target));
+
+  console.log(values);
+
+  fetch("/meineAngebote", {
+    method: "POST",
+    body: JSON.stringify(values),
+    headers: {
+      "content-type": "application/json",
+    },
+  }).then((res) => {
+    console.log(res.ok);
+    window.location = "MAIndex.html";
+  });
+
+  console.log("FORM SUBMITTED", values);
+});

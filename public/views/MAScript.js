@@ -48,8 +48,15 @@ createForm.addEventListener("submit", (evt) => {
       "content-type": "application/json",
     },
   }).then((res) => {
-    console.log(res.ok);
-    window.location = "MAIndex.html";
+    if(res.status == 401){
+      alert("Der eingegebene Benutzername existiert nicht!");
+    }
+    else {
+      console.log(res.ok);
+      window.location = "MAIndex.html";
+    }
+  }).catch((e)=>{
+    alert("a")
   });
 
   console.log("FORM SUBMITTED", values);

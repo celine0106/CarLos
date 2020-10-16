@@ -112,6 +112,11 @@ app.delete("/todos/:id", async (req, res) => {
 
 //Insert an Angebot 
 app.post("/meineAngebote", async (req, res) => {
+  const[affectedRows] = await connection.execute ("SELECT * FROM benutzer where benutzername = ?", [req.body.autor]);
+  if (affectedRows == 0){
+    res.status(401).send();
+  }
+  else {
   const [
     rows,
   ] = await connection.execute(
@@ -131,6 +136,7 @@ app.post("/meineAngebote", async (req, res) => {
     Marke: req.body.marke,
     Modell: req.body.modell,
   });
+}
 });
 
 

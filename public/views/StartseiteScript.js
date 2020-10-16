@@ -7,8 +7,8 @@ button.addEventListener("submit", (evt)=> {
     var filter = Object.fromEntries(new FormData(evt.target));
     console.log(filter);
     document.querySelector('#Unterüberschrift').innerHTML = 'Angebote: ';
-    var an = document.getElementById("eins");
-    an.remove();
+    
+    
     fetch("/angebote")
     .then((res) => {
       console.log(res.ok, res.status, res);
@@ -18,14 +18,16 @@ button.addEventListener("submit", (evt)=> {
       return res.json();
     })
     .then((angebote) => {
+      list.innerHTML="";
       console.log(angebote);
       angebote.forEach((angebot) => {
         const listItem = document.createElement("li");
         console.log(angebot.ID);
-        listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + angebot.Preis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
-        //listItem.append( angebot.Beschreibung);
+        var preis = angebot.Preis;
+        let ausgabepreis = preis.toString().replace(/\./, ',');
+        listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
         list.appendChild(listItem);
-        
+      
       });
     })
     .catch((e) => {

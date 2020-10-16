@@ -15,6 +15,15 @@ body {
     padding: 20px;
     margin: 0 auto;
 }
+
+.Navigationsleiste {
+  border: 0px none;
+  width: 1019px;
+  height: 70px;
+  align-content: center;
+  overflow: hidden; 
+}
+
 #Überschrift {
     font-size: 40px;
 }

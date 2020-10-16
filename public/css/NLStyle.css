@@ -1,75 +1,88 @@
-*{
-    font-family: verdana serif;
+body{
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
 }
 
-ul.sidenav {
-  list-style-type: none;
+.container{
+  width: 80%;
+  margin: 0 auto;
+}
+
+header{
+  background: #333;
+  width: 1020px;
+  height: 70px;
+}
+
+header::after{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+img{
+  float: left;
+  height: 60px;
+  width: 160px;
+  margin-top: 7px;
+
+}
+
+nav{
+  float:right;
+}
+
+nav ul{
   margin: 0;
   padding: 0;
-  width: 100%;
-  background: #333;
-  position: fixed;
-  height: 50px;
-  overflow: auto;
+  list-style: none;
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    float: left;
-    
-  }
-ul.sidenav li a {
-  display: block;
-  color: white;
-  padding: 10px 20px;
+
+nav li{
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+  position: relative;
+}
+
+nav a{
+  color: rgb(255, 255, 255);
   text-decoration: none;
-  font-size: 23px;
-  
-}
- 
-ul.sidenav li a.active {
-  background-color: #014a9c;
-  color: rgb(7, 7, 7);
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
-ul.sidenav li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+nav a:hover{
+  color:rgb(180, 179, 179);
 }
 
-div.content {
-  margin-left: 25%;
-  padding: 1px 16px;
-  height: 1000px;
+nav a::before{
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
 }
 
-@media screen and (max-width: 900px) {
-  ul.sidenav {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  
-  ul.sidenav li a {
-    float: left;
-    padding: 15px;
-  }
-  
-  div.content {margin-left: 0;}
+nav a:hover::before{
+  width: 100%;
 }
 
-@media screen and (max-width: 400px) {
-  ul.sidenav li a {
-    text-align: center;
-    float: none;
-  }
+#logoutBtn{
+  border-radius: 10px;
+  background: linear-gradient(to right, #a4957d, #6c604b);
+  outline: none;
+  display: block;
+  border: 0;
+  padding: 5px;
 }
+
+
+   
 
 
 

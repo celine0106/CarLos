@@ -21,13 +21,14 @@ button.addEventListener("submit", (evt)=> {
       list.innerHTML="";
       console.log(angebote);
       angebote.forEach((angebot) => {
-        const listItem = document.createElement("li");
+        if((filter.Marke == "" || filter.Marke === angebot.Marke) && (filter.Preis === "beliebig" || filter.Preis >= angebot.Preis) && (filter.Kilometer =="beliebig" || filter.Kilometer >= angebot.Kilometer) && (filter.Ort == "" || filter.Ort == angebot.Ort) && (filter.Autor == "" || filter.Autor == angebot.Autor) && (filter.Jahr === "beliebig" || filter.Jahr <= angebot.Erstzulassung)){
+          const listItem = document.createElement("li");
         console.log(angebot.ID);
         var preis = angebot.Preis;
         let ausgabepreis = preis.toString().replace(/\./, ',');
         listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
         list.appendChild(listItem);
-      
+        }
       });
     })
     .catch((e) => {

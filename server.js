@@ -79,21 +79,28 @@ app.get("/benutzer", async (req, res) => {
   */
 });
 app.post("/register", async (req, res) => {
-  const [
-    rows,
-  ] = await connection.execute(
-    "INSERT INTO benutzer (benutzername, passwort, vorname, nachname, telefon, email) VALUES (?, ?, ?, ?, ?, ?)",
-    [req.body.username, req.body.pwd, req.body.vorname, req.body.nachname, req.body.tel, req.body.email]
-  );
-
-  res.json({
-    benutzername: req.body.username,
-    vorname: req.body.vorname,
-    nachname: req.body.nachname,
-    telefon: req.body.tel,
-    email: req.body.email,
-    password: req.body.pwd,
-  });
+  const[affectedRows] = await connection.execute ("SELECT * FROM benutzer where benutzername = ?", [req.body.username]);
+  if (affectedRows == 0){
+    const [
+      rows,
+    ] = await connection.execute(
+      "INSERT INTO benutzer (benutzername, passwort, vorname, nachname, telefon, email) VALUES (?, ?, ?, ?, ?, ?)",
+      [req.body.username, req.body.pwd, req.body.vorname, req.body.nachname, req.body.tel, req.body.email]
+    );
+  
+    res.json({
+      benutzername: req.body.username,
+      vorname: req.body.vorname,
+      nachname: req.body.nachname,
+      telefon: req.body.tel,
+      email: req.body.email,
+      password: req.body.pwd,
+    });
+  }
+  else {
+    res.status(401).send();
+    
+  }
 });
 /*
 app.delete("/todos/:id", async (req, res) => {

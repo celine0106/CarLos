@@ -52,23 +52,41 @@ button.addEventListener("submit", (evt)=> {
 
 createForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-
-  console.log("aaa");
   
   const values = Object.fromEntries(new FormData(evt.target));
 
   console.log(values);
 
-  fetch("/register", {
-    method: "POST",
-    body: JSON.stringify(values),
-    headers: {
-      "content-type": "application/json",
-    },
-  }).then((res) => {
-    console.log(res.ok);
-    window.location = "loginINdex.html";
+  if (values.username !== "" && values.pwd !== "") {
+    console.log("b");
+    fetch("/register", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then((res) => {
+      if(res.status == 401){
+        alert("Der eingegebene Benutzername existiert bereits!");
+      }
+      else {
+      console.log(res.ok);
+      window.location = "loginINdex.html";
+      }
+    });
+  
+    console.log("FORM SUBMITTED", values);
+  }
+  else if (values.username === ""){
+    console.log("a");
+    const name = document.querySelector('#usernamer');
+    alert("Bitte geben Sie einen Benutzernamen ein!");
+  }
+  else if (values.pwd === ""){
+    console.log("a");
+    const name = document.querySelector('#usernamer');
+    alert("Bitte geben Sie ein Passwort ein!");
+  }
   });
 
-  console.log("FORM SUBMITTED", values);
-});
+  

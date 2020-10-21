@@ -131,9 +131,7 @@ table {
     list-style-type: none;
 }
 
-
-
-input[type=text], textarea, .Eingabefeld{
+input[type=text], textarea{
     width: 100%;
     height: 25px;
     padding: 12px 20px;
@@ -145,6 +143,16 @@ input[type=text], textarea, .Eingabefeld{
     resize: none;
   }
 
+  select{
+    width: 100%;
+    height: 25px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+  }
   input[type=text]:focus {
     border: 3px solid #555;
   }

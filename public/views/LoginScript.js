@@ -38,6 +38,13 @@ button.addEventListener("submit", (evt)=> {
         if(benutzer.benutzername === values.username && benutzer.passwort == values.pwd){
             console.log("success");
             erg = benutzer;
+            var url = "/login/"+benutzer.benutzername;
+            {
+              fetch(url)
+              .then((res)=> {
+                console.log("a");
+              })
+            }
             window.location = "startseiteindex.html";
         }
       });

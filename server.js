@@ -30,16 +30,24 @@ app.use(
   })
 );
 
-/*app.get("/login/:username", (req, res) => {
+app.get("/login/:username", (req, res) => {
   req.session.username = req.params.username;
 
   console.log("/login/:username", req.session.username);
 
   res.send();
-});*/
+});
+
+app.get("/meineDatenAnzeigen", async (req, res) => {
+  console.log(req.session.username);
+  const [rows] = await connection.execute("SELECT * FROM benutzer where benutzername = ?", [req.session.username]);
+  console.log(rows);
+
+  res.json(rows);
+});
 
 app.get("/angebote", async (req, res) => {
-  
+    console.log(req.session.username);
     const [rows] = await connection.execute("SELECT * FROM angebot");
     console.log(rows);
 
@@ -102,6 +110,42 @@ app.post("/register", async (req, res) => {
     
   }
 });
+
+app.patch("/vornameaktualisierung", async (req, res) => {
+  const[affectedRows] = await connection.execute ("UPDATE benutzer SET vorname = ? where benutzername = ?", [req.body.Vorname, req.session.username]);
+  
+    res.json({
+      benutzername: req.body.username,
+      vorname: req.body.vorname,
+    });
+});
+
+app.patch("/nachnameaktualisierung", async (req, res) => {
+  const[affectedRows] = await connection.execute ("UPDATE benutzer SET nachname = ? where benutzername = ?", [req.body.Nachname, req.session.username]);
+  
+    res.json({
+      benutzername: req.body.username,
+      nachname: req.body.nachname,
+    });
+});
+
+app.patch("/telefonaktualisierung", async (req, res) => {
+  const[affectedRows] = await connection.execute ("UPDATE benutzer SET telefon = ? where benutzername = ?", [req.body.Telefon, req.session.username]);
+  
+    res.json({
+      benutzername: req.body.username,
+      vorname: req.body.telefon,
+    });
+});
+
+app.patch("/emailaktualisierung", async (req, res) => {
+  const[affectedRows] = await connection.execute ("UPDATE benutzer SET email = ? where benutzername = ?", [req.body.Email, req.session.username]);
+  
+    res.json({
+      benutzername: req.body.username,
+      vorname: req.body.email,
+    });
+});
 /*
 app.delete("/todos/:id", async (req, res) => {
   console.log(req.params.id);
@@ -119,11 +163,6 @@ app.delete("/todos/:id", async (req, res) => {
 
 //Insert an Angebot 
 app.post("/meineAngebote", async (req, res) => {
-  const[affectedRows] = await connection.execute ("SELECT * FROM benutzer where benutzername = ?", [req.body.autor]);
-  if (affectedRows == 0){
-    res.status(401).send();
-  }
-  else {
   const [
     rows,
   ] = await connection.execute(
@@ -143,7 +182,6 @@ app.post("/meineAngebote", async (req, res) => {
     Marke: req.body.marke,
     Modell: req.body.modell,
   });
-}
 });
 
 

@@ -26,6 +26,7 @@ window.onclick = function(event) {
 
 const createForm = document.querySelector('#aerstellen');
 const abbrechenButton = document.querySelector('#abbrechnen');
+var erg = 2;
 
 abbrechenButton.addEventListener("click", (evt) => {
   evt.preventDefault();
@@ -40,24 +41,43 @@ createForm.addEventListener("submit", (evt) => {
   const values = Object.fromEntries(new FormData(evt.target));
 
   console.log(values);
+  fetch("/benutzer")
+    .then((res) => {
+      console.log(res.ok, res.status, res);
 
-  fetch("/meineAngebote", {
-    method: "POST",
-    body: JSON.stringify(values),
-    headers: {
-      "content-type": "application/json",
-    },
-  }).then((res) => {
-    if(res.status == 401){
-      alert("Der eingegebene Benutzername existiert nicht!");
-    }
-    else {
-      console.log(res.ok);
-      window.location = "MAIndex.html";
-    }
-  }).catch((e)=>{
-    alert("a")
-  });
+      if (!res.ok) return Promise.reject(res.status);
 
-  console.log("FORM SUBMITTED", values);
+      return res.json();
+    })
+    .then((benutzer) => {
+      
+      benutzer.forEach((benutzer) => {
+        if(benutzer.benutzername === values.autor){
+            console.log("success");
+            erg = benutzer;
+            fetch("/meineAngebote", {
+              method: "POST",
+              body: JSON.stringify(values),
+              headers: {
+                "content-type": "application/json",
+              },
+            }).then((res) => {
+                console.log(res.ok);
+                window.location = "MAIndex.html";
+            }).catch((e)=>{
+              alert('Whoops: ${e}');
+            });
+          
+            console.log("FORM SUBMITTED", values);
+        }
+      });
+      if (erg === 2){
+        alert("Benutzername nicht gefunden! Bitte überprüfen Sie Ihre Eingabe im Feld Autor.");
+      }  
+    })
+    .catch((e) => {
+      alert(`WHOOPS: ${e}`);
+    });
+
+  
 });

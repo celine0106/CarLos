@@ -41,6 +41,10 @@ iframe {
     flex-direction: row;
 }
 
+.inputs {
+    border : none;
+    background: none;
+}
 .Bearbeitung {
     height:20px;
     width:20px;

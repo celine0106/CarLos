@@ -2,12 +2,30 @@
 const button = document.querySelector('form');
 const list = document.querySelector("#Angebotsliste");
 
+//Quelle: https://stackoverrun.com/de/q/11837034
+window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+//Ende Quelle
+
+fetch("/angemeldet")
+.then ((res) => {if(res.status === 401){
+  alert('Bitte melden Sie sich an um die Angebote einsehen zu können!');
+  window.location = "loginIndex.html";
+}
+})
+.catch((e) => {
+  alert(`WHOOPS: ${e}`);
+}); 
+
 button.addEventListener("submit", (evt)=> {
     evt.preventDefault();
     var filter = Object.fromEntries(new FormData(evt.target));
     console.log(filter);
-    document.querySelector('#Unterüberschrift').innerHTML = 'Angebote: ';
-    
     
     fetch("/angebote")
     .then((res) => {
@@ -18,6 +36,7 @@ button.addEventListener("submit", (evt)=> {
       return res.json();
     })
     .then((angebote) => {
+      document.querySelector('#Unterüberschrift').innerHTML = 'Angebote: ';
       list.innerHTML="";
       console.log(angebote);
       angebote.forEach((angebot) => {

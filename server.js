@@ -31,12 +31,29 @@ app.use(
 );
 
 app.get("/login/:username", (req, res) => {
-  req.session.username = req.params.username;
-
-  console.log("/login/:username", req.session.username);
-
-  res.send();
+  if(!req.session.username || req.session.username === req.params.username){
+    req.session.username = req.params.username;
+    console.log("/login/:username", req.session.username);
+    res.status(200).send();
+  }
+   else {
+     res.status(401).send();
+   }
 });
+
+app.get("/angemeldet", async (req,res) => {
+  if (!req.session.username) {
+    return res.status(401).send();
+  }
+  else {
+    return res.status(200).send();
+  }
+})
+
+app.get("/logout", async (req,res) => {
+  req.session.destroy();
+  return res.status(200).send();
+})
 
 app.get("/meineDatenAnzeigen", async (req, res) => {
   console.log(req.session.username);
@@ -60,18 +77,6 @@ app.get("/angebote", async (req, res) => {
     console.log(rows);
 
     res.json(rows);
-
-  /*console.log("/todos", req.session.username);
-  if (!req.session.username) {
-    return res.status(401).send();
-  }*/
-
-  /*const [
-    rows,
-  ] = await connection.execute("SELECT * FROM todos WHERE author = ?", [
-    req.session.username,
-  ]);
-  */
 });
 
 app.get("/benutzer", async (req, res) => {
@@ -79,20 +84,6 @@ app.get("/benutzer", async (req, res) => {
     const [rows] = await connection.execute("SELECT * FROM benutzer");
       
     res.json(rows);
-   
-    
-
-  /*console.log("/todos", req.session.username);
-  if (!req.session.username) {
-    return res.status(401).send();
-  }*/
-
-  /*const [
-    rows,
-  ] = await connection.execute("SELECT * FROM todos WHERE author = ?", [
-    req.session.username,
-  ]);
-  */
 });
 app.post("/register", async (req, res) => {
   const[affectedRows] = await connection.execute ("SELECT * FROM benutzer where benutzername = ?", [req.body.username]);

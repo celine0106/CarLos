@@ -42,10 +42,19 @@ button.addEventListener("submit", (evt)=> {
             {
               fetch(url)
               .then((res)=> {
-                console.log("a");
+                if(res.ok){
+                  console.log("success");
+                  window.location = "startseiteindex.html";
+                }
+                else {
+                  alert("Sie sind bereits mit einem anderen Benutzernamen angemeldet");
+                }
+              })
+              .catch((e)=> {
+                  alert(`WHOOPS: ${e}`);
               })
             }
-            window.location = "startseiteindex.html";
+            
         }
       });
       if (erg === 2){

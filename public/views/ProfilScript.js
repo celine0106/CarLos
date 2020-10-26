@@ -11,7 +11,25 @@ const nausgabe = document.querySelector('#Nachname');
 const tausgabe = document.querySelector('#Telefon');
 const eausgabe = document.querySelector('#Email');
 
-fetch("/meineDatenAnzeigen")
+//Quelle: https://stackoverrun.com/de/q/11837034
+window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+//Ende Quelle
+
+fetch("/angemeldet")
+.then((res)=> {
+  console.log(res.ok, res.status, res);
+      if(res.status === 401){
+        alert('Bitte melden Sie sich an um ein Profil erstellen zu können!');
+        window.location = "loginIndex.html";
+      }
+      else {
+        fetch("/meineDatenAnzeigen")
     .then((res) => {
       console.log(res.ok, res.status, res);
 
@@ -28,9 +46,13 @@ fetch("/meineDatenAnzeigen")
       })
   
     })
+  }
+})
     .catch((e) => {
       alert(`WHOOPS: ${e}`);
     });
+      
+
 
 Vorname.addEventListener("submit", (evt)=> {
     evt.preventDefault();

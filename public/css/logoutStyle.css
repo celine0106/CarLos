@@ -1,0 +1,30 @@
+*{
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+}
+
+body {
+    background-image: url('../views/backgroundPicture.jpg');
+    
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.Flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Seiteninhalt {
+    background-color: rgb(255,255,255, 0.6);;
+    color: #3c3c3c;
+    font-size: 20px;
+    padding: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+a {
+    color:#816154de;
+}

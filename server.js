@@ -47,7 +47,7 @@ app.get("/meineDatenAnzeigen", async (req, res) => {
 });
 app.get("/Meineinserate", async (req, res) => {
   console.log(req.session.username);
-  const [rows] = await connection.execute("SELECT * FROM angebot WHERE benutzername =?", [req.session.username]);
+  const [rows] = await connection.execute("SELECT * FROM angebot WHERE autor =?", [req.session.username]);
   console.log(rows);
 
   res.json(rows);

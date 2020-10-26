@@ -79,7 +79,7 @@ createForm.addEventListener("submit", (evt) => {
     .catch((e) => {
       alert(`WHOOPS: ${e}`);
     });
-
+  });
     const list = document.querySelector("#Angebotsliste1");
 
  fetch("/Meineinserate")
@@ -105,6 +105,6 @@ createForm.addEventListener("submit", (evt) => {
  })
  .catch((e) => {
    alert(`WHOOPS: ${e}`);
- });
+ 
 });
 

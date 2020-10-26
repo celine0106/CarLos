@@ -24,6 +24,7 @@ window.onclick = function(event) {
   }
 }
 
+
 const createForm = document.querySelector('#aerstellen');
 const abbrechenButton = document.querySelector('#abbrechnen');
 var erg = 2;
@@ -79,5 +80,31 @@ createForm.addEventListener("submit", (evt) => {
       alert(`WHOOPS: ${e}`);
     });
 
-  
+    const list = document.querySelector("#Angebotsliste1");
+
+ fetch("/Meineinserate")
+ .then((res) => {
+   console.log(res.ok, res.status, res);
+
+   if (!res.ok) return Promise.reject(res.status);
+
+   return res.json();
+ })
+ .then((angebote) => {
+   list.innerHTML="";
+   console.log(angebote);
+   angebote.forEach((angebot) => {
+    const listItem = document.createElement("li");
+     console.log(angebot.ID);
+     var preis = angebot.Preis;
+     let ausgabepreis = preis.toString().replace(/\./, ',');
+     listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
+     list.appendChild(listItem);
+     }
+   );
+ })
+ .catch((e) => {
+   alert(`WHOOPS: ${e}`);
+ });
 });
+

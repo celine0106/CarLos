@@ -48,6 +48,7 @@ INSERT INTO `angebot` (`ID`, `Preis`, `Kilometer`, `Ort`, `Erstzulassung`, `Bild
 (1, 5000.89, 60000, 'Stuttgart', 1998, 's', 'snfwNF', 'AD', 'AD', 'AD'),
 (2, 5000.89, 60000, 'Stuttgart', 1998, 's', 'snfwNF', 'AD', 'AD', 'AD');
 
+
 -- --------------------------------------------------------
 
 --

@@ -45,6 +45,14 @@ app.get("/meineDatenAnzeigen", async (req, res) => {
 
   res.json(rows);
 });
+app.get("/Meineinserate", async (req, res) => {
+  console.log(req.session.username);
+  const [rows] = await connection.execute("SELECT * FROM angebot WHERE benutzername =?", [req.session.username]);
+  console.log(rows);
+
+  res.json(rows);
+
+});
 
 app.get("/angebote", async (req, res) => {
     console.log(req.session.username);
@@ -182,7 +190,10 @@ app.post("/meineAngebote", async (req, res) => {
     Marke: req.body.marke,
     Modell: req.body.modell,
   });
+
 });
+
+
 
 
 app.listen(5100);

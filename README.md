@@ -15,6 +15,20 @@ Die Autos die Verkauft werden sollen sind unter dem Menüpunkt meine Angebote an
 </ul>
 <hr>
 <hi>Quick Start</hi>
-<p>Diese Anwendung kann direkt aus Git geklont werden und anschließend mit wenigen Kommanzeilene installiert werden. Hier sind die ersten Schritte:</p>
-<p style:"backgroundcolor = lightgrey">
-git clone https://github.com/celine0106/CarLos <br>
+<p style="background-color: lightgrey;">
+<ol>
+<li>git clone https://github.com/celine0106/CarLos </li><br>
+<li>npm init</li><br>
+<li>npm install express</li><br>
+<li>npm install mysql2</li><br>
+<li>npm install express-session</li><br>
+</ol>
+</p>
+<p>Um die Datenbank nutzen zu können muss zusätzlich in XAMPP eine Datenbank mit den Namen carlos angelegt werden. In diese ist dann die SQL-Datei carlos.sql zu importieren. <br>
+Um ein Passwort für die Datenbank festzulegen muss innerhalb dieses Projekts ein .env file angelegt werden mit dem Inhalt DB_PASSWORD=""</p>
+<p style="background-color: lightgrey;"> Um nun die Anwendun starten zu können müssen folgende Schritte gemacht werden:
+<ol>
+<li>node server.js</li>
+<li>http://localhost:5100<li>
+</ol>
+</p>

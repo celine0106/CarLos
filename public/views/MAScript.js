@@ -24,6 +24,52 @@ window.onclick = function(event) {
   }
 }
 
+//Quelle: https://stackoverrun.com/de/q/11837034
+window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+//Ende Quelle
+
+fetch("/angemeldet")
+.then ((res) => {if(res.status === 401){
+  alert('Bitte melden Sie sich an um Angebote zu erstellen!');
+  window.location = "loginIndex.html";
+}
+else {
+  fetch("/Meineinserate")
+ .then((res) => {
+   console.log(res.ok, res.status, res);
+
+   if (!res.ok) return Promise.reject(res.status);
+
+   return res.json();
+ })
+ .then((angebote) => {
+   list.innerHTML="";
+   console.log(angebote);
+   angebote.forEach((angebot) => {
+    const listItem = document.createElement("li");
+     console.log(angebot.ID);
+     var preis = angebot.Preis;
+     let ausgabepreis = preis.toString().replace(/\./, ',');
+     listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
+     list.appendChild(listItem);
+     }
+   );
+ })
+ .catch((e) => {
+   alert(`WHOOPS: ${e}`);
+ 
+});
+}
+})
+.catch((e) => {
+  alert(`WHOOPS: ${e}`);
+}); 
 
 const createForm = document.querySelector('#aerstellen');
 const abbrechenButton = document.querySelector('#abbrechnen');
@@ -82,29 +128,5 @@ createForm.addEventListener("submit", (evt) => {
   });
     const list = document.querySelector("#Angebotsliste1").innerHTML = '<i class="glyphicon glyphicon-ok" style="font-size: 20px;"></i>';
 
- fetch("/Meineinserate")
- .then((res) => {
-   console.log(res.ok, res.status, res);
-
-   if (!res.ok) return Promise.reject(res.status);
-
-   return res.json();
- })
- .then((angebote) => {
-   list.innerHTML="";
-   console.log(angebote);
-   angebote.forEach((angebot) => {
-    const listItem = document.createElement("li");
-     console.log(angebot.ID);
-     var preis = angebot.Preis;
-     let ausgabepreis = preis.toString().replace(/\./, ',');
-     listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
-     list.appendChild(listItem);
-     }
-   );
- })
- .catch((e) => {
-   alert(`WHOOPS: ${e}`);
  
-});
 

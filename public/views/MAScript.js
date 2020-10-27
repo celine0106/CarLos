@@ -162,7 +162,7 @@ createForm.addEventListener("submit", (evt) => {
               },
             }).then((res) => {
                 console.log(res.ok);
-                //window.location = "MAIndex.html";
+                window.location = "MAIndex.html";
             }).catch((e)=>{
               alert('Whoops: ${e}');
             });

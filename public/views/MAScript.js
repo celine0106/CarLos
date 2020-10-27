@@ -24,6 +24,7 @@ window.onclick = function(event) {
   }
 }
 
+
 //Quelle: https://stackoverrun.com/de/q/11837034
 window.addEventListener( "pageshow", function ( event ) {
   var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
@@ -56,6 +57,7 @@ else {
    angebote.forEach((angebot) => {
     const listItem = document.createElement("li");
      console.log(angebot.ID);
+     var angebotId = angebot.ID;
      var preis = angebot.Preis;
      let ausgabepreis = preis.toString().replace(/\./, ',');
      listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' 
@@ -74,6 +76,47 @@ else {
 .catch((e) => {
   alert(`WHOOPS: ${e}`);
 }); 
+
+// Modal Fenster für das Bearbeiten eines Angebots öffnen
+var modalEdit = document.getElementById("modalEdit");
+var btnEdit = document.getElementById("aEdit");
+btnEdit.onclick = function() {
+  modalEdit.style.display = "block";
+}
+window.onclick = function(event) {
+  if (event.target == modalEdit) {
+    modalEdit.style.display = "none";
+  }
+}
+
+// Daten von gewähltem Angebot in Modal Fenster anzeigen 
+const editbtn = document.querySelector('#aEdit');
+
+editbtn.addEventListener("click", (evt) => {
+ evt.preventDefault();
+ fetch("/angebotId")
+ .then((res) => {
+  console.log(res.ok, res.status, res);
+
+  if (!res.ok) return Promise.reject(res.status);
+
+  return res.json();
+})
+.then((daten) => {
+  daten.forEach((data) => {
+    pausgabe.value = data.Preis;
+    kausgabe.value = data.Kilometer;
+    oausgabe.value = data.Ort;
+    eausgabe.value = data.Erstzulassung;
+    bausgabe.value = data.Bild;
+    besausgabe.value = data.Beschreibung;
+    aausgabe.value = data.Autor;
+    mausgabe.value = data.Marke;
+    moausgabe.value = data.Modell;
+  })
+})
+});
+
 
 const createForm = document.querySelector('#aerstellen');
 const abbrechenButton = document.querySelector('#abbrechnen');
@@ -130,6 +173,8 @@ createForm.addEventListener("submit", (evt) => {
       alert(`WHOOPS: ${e}`);
     });
   });
+
+
     
 
  

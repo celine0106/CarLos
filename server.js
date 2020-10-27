@@ -55,6 +55,7 @@ app.get("/logout", async (req,res) => {
   return res.status(200).send();
 })
 
+//Daten des angemeldeten Benutzer 
 app.get("/meineDatenAnzeigen", async (req, res) => {
   console.log(req.session.username);
   const [rows] = await connection.execute("SELECT * FROM benutzer where benutzername = ?", [req.session.username]);
@@ -62,6 +63,8 @@ app.get("/meineDatenAnzeigen", async (req, res) => {
 
   res.json(rows);
 });
+
+//erstellte Angebote eines Benutzers
 app.get("/Meineinserate", async (req, res) => {
   console.log(req.session.username);
   const [rows] = await connection.execute("SELECT * FROM angebot WHERE autor =?", [req.session.username]);
@@ -71,6 +74,7 @@ app.get("/Meineinserate", async (req, res) => {
 
 });
 
+//Alle Angebote aus der Datenbank 
 app.get("/angebote", async (req, res) => {
     console.log(req.session.username);
     const [rows] = await connection.execute("SELECT * FROM angebot");
@@ -78,6 +82,15 @@ app.get("/angebote", async (req, res) => {
 
     res.json(rows);
 });
+
+//Angebot einer bestimmten ID
+app.get("/angebotId", async (req, res) =>{
+  const [rows] = await connection.execute("SELECT * FROM angebot WHERE ID =?", [req.body.id]);
+  console.log(rows);
+
+  res.json(rows);
+})
+
 
 app.get("/benutzer", async (req, res) => {
 
@@ -184,6 +197,10 @@ app.post("/meineAngebote", async (req, res) => {
 
 });
 
+//Update an Angebot 
+app.patch("/meinAngebotUpdate", async(req,res) =>{
+  const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?", [req.body.Preis]);
+})
 
 
 

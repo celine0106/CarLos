@@ -57,13 +57,56 @@ else {
    angebote.forEach((angebot) => {
     const listItem = document.createElement("li");
      console.log(angebot.ID);
-     var angebotId = angebot.ID;
      var preis = angebot.Preis;
      let ausgabepreis = preis.toString().replace(/\./, ',');
+
+     const editbtn = document.createElement("button");
+        editbtn.innerHTML = '<i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i>';
+
+        const deletebtn = document.createElement("button");
+        deletebtn.innerHTML = '<i class="glyphicon glyphicon-trash" style="font-size: 20px;"></i>';
+
      listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' 
-     + angebot.Beschreibung +'<\p>' + '<button type="submit" id="aEdit"><i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i></button>' +
-     '<button type="submit" id="aDelete"><i class="glyphicon glyphicon-trash" style="font-size: 20px;"></i></button>' + '<hr>';
-     list.appendChild(listItem);
+     + angebot.Beschreibung +'<\p>';
+     
+        listItem.append(editbtn, deletebtn);
+        const strich = document.createElement("hr");
+        listItem.append(strich);
+        list.appendChild(listItem);
+
+    // Modal Fenster für das Bearbeiten eines Angebots öffnen
+    var modalEdit = document.getElementById("modalEdit");
+    editbtn.onclick = function() {
+    modalEdit.style.display = "block";
+    }
+    window.onclick = function(event) {
+      if (event.target == modalEdit) {
+        modalEdit.style.display = "none";
+      }
+    }
+
+editbtn.addEventListener("click", (evt) => {
+ evt.preventDefault();
+
+    p.value = angebot.Preis;
+    k.value = angebot.Kilometer;
+    o.value = angebot.Ort;
+    e.value = angebot.Erstzulassung;
+    b.value = angebot.Bild;
+    bess.value = angebot.Beschreibung;
+    a.value = angebot.Autor;
+    m.value = angebot.Marke;
+    mo.value = angebot.Modell;
+  
+});
+/*//Fetch-Aufruf der Update-Methode mit Mitgabe der ID:
+fetch(`/meinAngebotUpdate/${angebot.id}`, {
+  method: "PUT",
+  body: JSON.stringify(values),
+              headers: {
+                "content-type": "application/json",
+              },
+});*/
      }
    );
  })
@@ -76,46 +119,6 @@ else {
 .catch((e) => {
   alert(`WHOOPS: ${e}`);
 }); 
-
-// Modal Fenster für das Bearbeiten eines Angebots öffnen
-var modalEdit = document.getElementById("modalEdit");
-var btnEdit = document.getElementById("aEdit");
-btnEdit.onclick = function() {
-  modalEdit.style.display = "block";
-}
-window.onclick = function(event) {
-  if (event.target == modalEdit) {
-    modalEdit.style.display = "none";
-  }
-}
-
-// Daten von gewähltem Angebot in Modal Fenster anzeigen 
-const editbtn = document.querySelector('#aEdit');
-
-editbtn.addEventListener("click", (evt) => {
- evt.preventDefault();
- fetch("/angebotId")
- .then((res) => {
-  console.log(res.ok, res.status, res);
-
-  if (!res.ok) return Promise.reject(res.status);
-
-  return res.json();
-})
-.then((daten) => {
-  daten.forEach((data) => {
-    pausgabe.value = data.Preis;
-    kausgabe.value = data.Kilometer;
-    oausgabe.value = data.Ort;
-    eausgabe.value = data.Erstzulassung;
-    bausgabe.value = data.Bild;
-    besausgabe.value = data.Beschreibung;
-    aausgabe.value = data.Autor;
-    mausgabe.value = data.Marke;
-    moausgabe.value = data.Modell;
-  })
-})
-});
 
 
 const createForm = document.querySelector('#aerstellen');
@@ -130,7 +133,6 @@ abbrechenButton.addEventListener("click", (evt) => {
 createForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  console.log("jj");
   
   const values = Object.fromEntries(new FormData(evt.target));
 
@@ -149,6 +151,9 @@ createForm.addEventListener("submit", (evt) => {
         if(benutzer.benutzername === values.autor){
             console.log("success");
             erg = benutzer;
+            var preis = values.preis;
+            preis = preis.toString().replace(/\./, '');
+            values.preis = preis.toString().replace(/\,/, '.');
             fetch("/meineAngebote", {
               method: "POST",
               body: JSON.stringify(values),
@@ -157,7 +162,7 @@ createForm.addEventListener("submit", (evt) => {
               },
             }).then((res) => {
                 console.log(res.ok);
-                window.location = "MAIndex.html";
+                //window.location = "MAIndex.html";
             }).catch((e)=>{
               alert('Whoops: ${e}');
             });

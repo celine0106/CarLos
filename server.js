@@ -198,8 +198,20 @@ app.post("/meineAngebote", async (req, res) => {
 });
 
 //Update an Angebot 
-app.patch("/meinAngebotUpdate", async(req,res) =>{
-  const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?", [req.body.Preis]);
+app.put("/meinAngebotUpdate/:id", async(req,res) =>{
+  const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ?", 
+  [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]);
+  res.json({
+    Preis: req.body.preis,
+    Kilometer: req.body.kilometer,
+    Ort: req.body.ort,
+    Erstzulassung: req.body.erstz,
+    Bild: req.body.bild,
+    Beschreibung: req.body.bes,
+    Autor: req.body.autor,
+    Marke: req.body.marke,
+    Modell: req.body.modell,
+  });
 })
 
 

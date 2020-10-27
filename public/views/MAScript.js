@@ -80,7 +80,7 @@ createForm.addEventListener("submit", (evt) => {
       alert(`WHOOPS: ${e}`);
     });
   });
-    const list = document.querySelector("#Angebotsliste1");
+    const list = document.querySelector("#Angebotsliste1").innerHTML = '<i class="glyphicon glyphicon-ok" style="font-size: 20px;"></i>';
 
  fetch("/Meineinserate")
  .then((res) => {

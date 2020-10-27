@@ -58,7 +58,9 @@ else {
      console.log(angebot.ID);
      var preis = angebot.Preis;
      let ausgabepreis = preis.toString().replace(/\./, ',');
-     listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
+     listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' 
+     + angebot.Beschreibung +'<\p>' + '<button type="submit" id="aEdit"><i class="glyphicon glyphicon-pencil" style="font-size: 20px;"></i></button>' +
+     '<button type="submit" id="aDelete"><i class="glyphicon glyphicon-trash" style="font-size: 20px;"></i></button>' + '<hr>';
      list.appendChild(listItem);
      }
    );

@@ -34,6 +34,8 @@ window.addEventListener( "pageshow", function ( event ) {
 });
 //Ende Quelle
 
+const list = document.querySelector("#Angebotsliste1");
+
 fetch("/angemeldet")
 .then ((res) => {if(res.status === 401){
   alert('Bitte melden Sie sich an um Angebote zu erstellen!');
@@ -126,7 +128,7 @@ createForm.addEventListener("submit", (evt) => {
       alert(`WHOOPS: ${e}`);
     });
   });
-    const list = document.querySelector("#Angebotsliste1").innerHTML = '<i class="glyphicon glyphicon-ok" style="font-size: 20px;"></i>';
+    
 
  
 

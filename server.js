@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql2/promise");
 const session = require("express-session");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
@@ -21,6 +22,9 @@ mysql
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use(fileUpload({
+  createParentPath: true
+}));
 
 app.use(
   session({
@@ -180,7 +184,7 @@ app.post("/meineAngebote", async (req, res) => {
   ] = await connection.execute(
     "INSERT INTO angebot (Preis, Kilometer, Ort, Erstzulassung, Bild, Beschreibung, Autor, Marke, Modell) \
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]
+    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.Bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]
   );
 
   res.json({
@@ -197,6 +201,32 @@ app.post("/meineAngebote", async (req, res) => {
 
 });
 
+app.post('/uploadBild', async (req,res) =>{
+  try {
+    if(!req.files) {
+      res.send({
+        status: false,
+        message: 'No file uploaded!'
+      });
+     } else {
+        let bild = req.files.bild;
+        bild.mv('./public/uploads/' + bild.name);
+        console.log("uploaded");
+        res.send({
+          status: true,
+          message: 'File is uploaded',
+          data: {
+            name: bild.name,
+            mimetype: bild.mimetype,
+            size: bild.size,
+          }
+        });
+    }
+  }
+    catch(err){
+      res.status(500).send(err);
+    }
+});
 //Update an Angebot 
 app.put("/meinAngebotUpdate/:id", async(req,res) =>{
   const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ?", 

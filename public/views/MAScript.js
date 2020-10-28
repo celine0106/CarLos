@@ -71,6 +71,13 @@ else {
      
         listItem.append(editbtn, deletebtn);
         const strich = document.createElement("hr");
+        const img = document.createElement('img');
+        const quelle = "../uploads/"+ angebot.Bild;
+        console.log(quelle);
+        img.src = quelle;
+        img.height="100";
+        img.width="150";
+        listItem.append(img);
         listItem.append(strich);
         list.appendChild(listItem);
 
@@ -130,6 +137,7 @@ abbrechenButton.addEventListener("click", (evt) => {
   window.location = "MAIndex.html";
 });
 
+const inputbild = document.getElementById("bild");
 createForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -137,6 +145,8 @@ createForm.addEventListener("submit", (evt) => {
   const values = Object.fromEntries(new FormData(evt.target));
 
   console.log(values);
+  values.Bild = inputbild.files[0].name;
+  console.log(values.Bild);
   fetch("/benutzer")
     .then((res) => {
       console.log(res.ok, res.status, res);
@@ -162,9 +172,21 @@ createForm.addEventListener("submit", (evt) => {
               },
             }).then((res) => {
                 console.log(res.ok);
-                window.location = "MAIndex.html";
+                const fd = new FormData();
+                fd.append('bild', inputbild.files[0]);
+                console.log(inputbild.files[0]);
+                console.log("a");
+                console.log(fd);
+                fetch('/uploadBild', {
+                 method: "post",
+                 body: fd
+              })
+              .then(res => res.json())
+              .then(json => console.log(json))
+              .catch(err => console.error(err));
+            window.location = "MAIndex.html";
             }).catch((e)=>{
-              alert('Whoops: ${e}');
+              alert(`Whoops: ${e}`);
             });
           
             console.log("FORM SUBMITTED", values);
@@ -179,7 +201,19 @@ createForm.addEventListener("submit", (evt) => {
     });
   });
 
-
+/*const uploadFile = (file) => {
+  const fd = new FormData();
+  fd.append('bild', file);
+  console.log("a");
+  console.log(fd);
+  fetch('/uploadBild', {
+    method: "post",
+    body: fd
+  })
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.error(err));
+}*/
     
 
  

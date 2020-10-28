@@ -45,7 +45,16 @@ button.addEventListener("submit", (evt)=> {
         console.log(angebot.ID);
         var preis = angebot.Preis;
         let ausgabepreis = preis.toString().replace(/\./, ',');
-        listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>' + '<hr>';
+        listItem.innerHTML = '<p>' + angebot.Marke + " "+ angebot.Modell+ " " + ausgabepreis + "€ " + angebot.Kilometer +"km "+ angebot.Ort + '<\p>' + '<p>' + angebot.Beschreibung +'<\p>';
+        const img = document.createElement('img');
+        const quelle = "../uploads/"+ angebot.Bild;
+        console.log(quelle);
+        img.src = quelle;
+        img.height="100";
+        img.width="150";
+        listItem.append(img);
+        const strich = document.createElement("hr");
+        listItem.append(strich);
         list.appendChild(listItem);
         }
       });

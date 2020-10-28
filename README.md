@@ -23,6 +23,7 @@ Die Autos die verkauft werden sollen sind unter dem Menüpunkt meine Angebote an
 * npm install express
 * npm install mysql2
 * npm install express-session
+* npm install express-fileupload
 ```
 Um die Datenbank nutzen zu können muss zusätzlich in XAMPP eine Datenbank mit den Namen carlos angelegt werden. In diese ist dann die SQL-Datei carlos.sql zu importieren. 
 Um ein Passwort für die Datenbank festzulegen muss innerhalb dieses Projekts ein .env file angelegt werden mit dem Inhalt DB_PASSWORD=""

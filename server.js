@@ -164,7 +164,7 @@ app.patch("/emailaktualisierung", async (req, res) => {
 });
 
 // Delete an Angebot 
-app.delete("/todos/:id", async (req, res) => {
+app.delete("/angebotLoeschen/:id", async (req, res) => {
   console.log(req.params.id);
 
   const [rows] = await connection.execute("DELETE FROM angebot WHERE id = ?", [
@@ -229,19 +229,20 @@ app.post('/uploadBild', async (req,res) =>{
     }
 });
 //Update an Angebot 
-app.put("/meinAngebotUpdate/:id", async(req,res) =>{
-  const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ?", 
-  [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]);
+app.patch("/meinAngebotUpdate/:id", async(req,res) =>{
+
+  const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ? WHERE ID =?", 
+  [req.body.p,req.body.k,req.body.o,req.body.e,req.body.b,req.body.bes,req.body.a,req.body.m,req.body.mo, req.params.id]);
   res.json({
-    Preis: req.body.preis,
-    Kilometer: req.body.kilometer,
-    Ort: req.body.ort,
-    Erstzulassung: req.body.erstz,
-    Bild: req.body.bild,
+    Preis: req.body.p,
+    Kilometer: req.body.k,
+    Ort: req.body.o,
+    Erstzulassung: req.body.e,
+    Bild: req.body.b,
     Beschreibung: req.body.bes,
-    Autor: req.body.autor,
-    Marke: req.body.marke,
-    Modell: req.body.modell,
+    Autor: req.body.a,
+    Marke: req.body.m,
+    Modell: req.body.mo,
   });
 })
 

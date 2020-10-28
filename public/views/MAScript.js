@@ -105,25 +105,8 @@ editbtn.addEventListener("click", (evt) => {
     m.value = angebot.Marke;
     mo.value = angebot.Modell;
   
-});
-
-// Lösche ausgewähltes Angebot
-deletebtn.addEventListener("click", (evt) => {
-  evt.preventDefault();
-
-  if(window.confirm('Bist du dir sicher?'))
-  {
-    fetch(`/todos/${angebot.id}`, {
-      method: "DELETE",
-      headers: {"Content-Type": "application/json",
-    },
-    });
-  };
-})
-
-
-const abbrechenEdit = document.querySelector('#abbrechenEdit');
-const saveEdit = document.querySelector('#submitEdit');
+    const abbrechenEdit = document.querySelector('#abbrechenEdit');
+    const saveEdit = document.querySelector('#aaendern');
 
 //Modal-Fenster abbrechen 
 abbrechenEdit.addEventListener("click", (evt) => {
@@ -134,14 +117,42 @@ abbrechenEdit.addEventListener("click", (evt) => {
 //Fetch-Aufruf der Update-Methode
 saveEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  fetch(`/meinAngebotUpdate/${angebot.id}`, {
-    method: "PUT",
-    body: JSON.stringify(values),
-              headers: {
-                "content-type": "application/json",
-              },
-});
+  const valuesChange = Object.fromEntries(new FormData(evt.target));
+
+  console.log(valuesChange);
+  fetch(`/meinAngebotUpdate/${angebot.ID}`, {
+    method: "PATCH",
+    body: JSON.stringify(valuesChange),
+    headers: {
+        "content-type": "application/json",
+    },
 })
+.then((res)=> {
+  window.location="MAIndex.html";
+  console.log(res.status);
+})
+})
+});
+
+// Lösche ausgewähltes Angebot
+deletebtn.addEventListener("click", (evt) => {
+  evt.preventDefault();
+
+  if(window.confirm('Bist du dir sicher?'))
+  {
+    fetch(`/angebotLoeschen/${angebot.ID}`, {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json",
+    },
+    })
+    .then ((res) => {
+      window.location = "MAIndex.html";
+    })
+  };
+})
+
+
+
      }
    );
  })
@@ -229,20 +240,6 @@ createForm.addEventListener("submit", (evt) => {
     });
   });
 
-/*const uploadFile = (file) => {
-  const fd = new FormData();
-  fd.append('bild', file);
-  console.log("a");
-  console.log(fd);
-  fetch('/uploadBild', {
-    method: "post",
-    body: fd
-  })
-  .then(res => res.json())
-  .then(json => console.log(json))
-  .catch(err => console.error(err));
-}*/
-    
 
  
 

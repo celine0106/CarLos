@@ -106,14 +106,42 @@ editbtn.addEventListener("click", (evt) => {
     mo.value = angebot.Modell;
   
 });
-/*//Fetch-Aufruf der Update-Methode mit Mitgabe der ID:
-fetch(`/meinAngebotUpdate/${angebot.id}`, {
-  method: "PUT",
-  body: JSON.stringify(values),
+
+// Lösche ausgewähltes Angebot
+deletebtn.addEventListener("click", (evt) => {
+  evt.preventDefault();
+
+  if(window.confirm('Bist du dir sicher?'))
+  {
+    fetch(`/todos/${angebot.id}`, {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json",
+    },
+    });
+  };
+})
+
+
+const abbrechenEdit = document.querySelector('#abbrechenEdit');
+const saveEdit = document.querySelector('#submitEdit');
+
+//Modal-Fenster abbrechen 
+abbrechenEdit.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  window.location = "MAIndex.html";
+});
+
+//Fetch-Aufruf der Update-Methode
+saveEdit.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  fetch(`/meinAngebotUpdate/${angebot.id}`, {
+    method: "PUT",
+    body: JSON.stringify(values),
               headers: {
                 "content-type": "application/json",
               },
-});*/
+});
+})
      }
    );
  })

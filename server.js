@@ -162,7 +162,8 @@ app.patch("/emailaktualisierung", async (req, res) => {
       vorname: req.body.email,
     });
 });
-/*
+
+// Delete an Angebot 
 app.delete("/todos/:id", async (req, res) => {
   console.log(req.params.id);
 
@@ -175,7 +176,7 @@ app.delete("/todos/:id", async (req, res) => {
   } else {
     res.status(404).send();
   }
-});*/
+});
 
 //Insert an Angebot 
 app.post("/meineAngebote", async (req, res) => {

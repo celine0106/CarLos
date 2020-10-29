@@ -1,7 +1,7 @@
 # CarLos
 
-CarLos ist ein Autoforum für das Kaufen und Verkaufen von Gerbauchtwagen.
-Nach einer erfolgreichen Registrierung und dem Login ist es den Nutzern möglich auf der Startseite alle angebotenen Gebrauchtagen einzusehen. Unter dem Menüpunkt "Meine Angebote" ist es den Nutzern ebenfalls möglich Inserate von Gebrauchtwagen einzustellen. 
+CarLos ist ein Autoforum für das Kaufen und Verkaufen von Gebrauchtwagen.
+Nach einer erfolgreichen Registrierung und dem Login ist es den Nutzern möglich auf der Startseite alle angebotenen Gebrauchtagen einzusehen. Unter dem Menüpunkt "Meine Angebote" ist es den Nutzern ebenfalls möglich Inserate von Gebrauchtwagen einzustellen und unter dem Menüpunkt "Profil" können Nutzer angegeben Daten zu sich bearbeiten.
 
 ## Team
 
@@ -47,8 +47,6 @@ Die Delete-Operation findet man unter dem Menüpukt "Meine Angebote" wieder. Hie
 Die Datenbank wird über MySQL angelegt und beinhaltet alle gespeicherten Datensätze der Anwendung. 
 Die Datenbank ist aufgebaut durch 2 Tabellen. Die Benutzer Tabelle, in der registrierte Benutzer hinterlegt sind und die Angebot Tabelle, in der angelegte Angebote gepseichert sind.
 Beim erstmaligen importieren der Datenbank befinden sich ebenfalls schon Testdaten in der Datenbank.
-
-![ERD-Diagramm](file:///C:/CarLos/CarLos/public/views/DB-Modell_CarLos.pdf)
 
 
 

@@ -1,5 +1,5 @@
 * {
-    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-family: 'Work Sans', sans-serif;
 }
 
 body, html {
@@ -117,14 +117,3 @@ input[type=text], input[type=password], input[type=email]{
     margin-top: 20px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
-
-
-
-
-
-
-
-  
-
-
-

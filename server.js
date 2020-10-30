@@ -80,6 +80,17 @@ app.get("/logout", async (req,res) => {
   }
 })
 
+app.get("/topangebot", async (req, res) => {
+  try {
+    const [rows] = await connection.execute("SELECT * FROM angebot where preis = (SELECT min(preis) FROM angebot)");
+    console.log(rows);
+    res.json(rows[0]);
+  }
+  catch(err){
+    res.status(500).send(err);
+    console.log("Fehler: " + err);
+  }
+})
 //Daten des angemeldeten Benutzer 
 app.get("/meineDatenAnzeigen", async (req, res) => {
   try {

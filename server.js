@@ -232,13 +232,13 @@ app.post('/uploadBild', async (req,res) =>{
 app.patch("/meinAngebotUpdate/:id", async(req,res) =>{
 
   const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ? WHERE ID =?", 
-  [req.body.p,req.body.k,req.body.o,req.body.e,req.body.b,req.body.bes,req.body.a,req.body.m,req.body.mo, req.params.id]);
+  [req.body.p,req.body.k,req.body.o,req.body.e,req.body.bd,req.body.bes,req.body.a,req.body.m,req.body.mo, req.params.id]);
   res.json({
     Preis: req.body.p,
     Kilometer: req.body.k,
     Ort: req.body.o,
     Erstzulassung: req.body.e,
-    Bild: req.body.b,
+    Bild: req.body.bd,
     Beschreibung: req.body.bes,
     Autor: req.body.a,
     Marke: req.body.m,

@@ -110,7 +110,6 @@ fetch("/angemeldet")
             k.value = angebot.Kilometer;
             o.value = angebot.Ort;
             e.value = angebot.Erstzulassung;
-            b.value = angebot.Bild;
             bess.value = angebot.Beschreibung;
             a.value = angebot.Autor;
             m.value = angebot.Marke;
@@ -129,6 +128,20 @@ fetch("/angemeldet")
             saveEdit.addEventListener("submit", (evt) => {
               evt.preventDefault();
               const valuesChange = Object.fromEntries(new FormData(evt.target));
+              const inputbd = document.getElementById("bd");
+              if(valuesChange.o == '' || valuesChange.bd === '' || valuesChange.bess === '' || valuesChange.m === '' || valuesChange.mo === '' || valuesChange.e === '' || valuesChange.p === '') {
+                alert("Bitte füllen Sie alle Felder!");
+              }
+              else {
+                if(!inputbd.files[0])
+                {
+                  valuesChange.bd = angebot.Bild;
+                }
+                else {
+                  valuesChange.bd = inputbd.files[0].name;
+                  console.log(valuesChange.Bild);
+                }
+              
 
               console.log(valuesChange);
               fetch(`/meinAngebotUpdate/${angebot.ID}`, {
@@ -138,9 +151,25 @@ fetch("/angemeldet")
                 "content-type": "application/json",
               },
               }).then((res)=> {
+                public/js/meine-angebote.js
                 window.location="meine-angebote.html";
-                console.log(res.status);
-              })
+              console.log(res.status);
+                const fod = new FormData();
+                fod.append('bild', inputbd.files[0]);
+                console.log(inputbd.files[0]);
+                fetch('/uploadBild', {
+                 method: "post",
+                 body: fod
+                 })
+                .then(res => res.json())
+                .then(json => console.log(json))
+                .catch(err => console.error(err));
+                   window.location = "MAIndex.html";
+                
+                }).catch((e)=>{
+                  alert(`Whoops: ${e}`);
+                });
+              }
             })
           });
           // Lösche ausgewähltes Angebot
@@ -186,8 +215,6 @@ fetch("/angemeldet")
     const values = Object.fromEntries(new FormData(evt.target));
 
     console.log(values);
-    values.Bild = inputbild.files[0].name;
-    console.log(values.Bild);
     fetch("/benutzer")
       .then((res) => {
         console.log(res.ok, res.status, res);
@@ -202,6 +229,12 @@ fetch("/angemeldet")
           if(benutzer.benutzername === values.autor){
               console.log("success");
               erg = benutzer;
+              if(values.ort == '' || values.bild === '' || values.bes === '' || values.marke === '' || values.modell === '' || values.erstz === '' || values.preis === '') {
+                alert("Bitte füllen Sie alle Felder!");
+              }
+              else {
+                values.Bild = inputbild.files[0].name;
+                console.log(values.Bild);
               var preis = values.preis;
               preis = preis.toString().replace(/\./, '');
               values.preis = preis.toString().replace(/\,/, '.');
@@ -216,8 +249,6 @@ fetch("/angemeldet")
                   const fd = new FormData();
                   fd.append('bild', inputbild.files[0]);
                   console.log(inputbild.files[0]);
-                  console.log("a");
-                  console.log(fd);
                   fetch('/uploadBild', {
                   method: "post",
                   body: fd
@@ -232,6 +263,7 @@ fetch("/angemeldet")
             
               console.log("FORM SUBMITTED", values);
           }
+        }
         });
         if (erg === 2){
           alert("Benutzername nicht gefunden! Bitte überprüfen Sie Ihre Eingabe im Feld Autor.");

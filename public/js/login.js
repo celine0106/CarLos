@@ -19,60 +19,48 @@ function login(){
 const button = document.querySelector('form');
 
 const createForm = document.querySelector('#register');
-
 button.addEventListener("submit", (evt)=> {
-    evt.preventDefault();
-    const values = Object.fromEntries(new FormData(evt.target));
-    var erg = 2;
-    fetch("/benutzer")
-    .then((res) => {
-      console.log(res.ok, res.status, res);
-
-      if (!res.ok) return Promise.reject(res.status);
-
-      return res.json();
-    })
-    .then((benutzer) => {
-      
-      benutzer.forEach((benutzer) => {
-        if(benutzer.benutzername === values.username && benutzer.passwort == values.pwd){
-            console.log("success");
-            erg = benutzer;
-            var url = "/login/"+benutzer.benutzername;
-            {
-              fetch(url)
-              .then((res)=> {
-                if(res.ok){
-                  console.log("success");
-                  window.location = "startseite.html";
-                }
-                else {
-                  alert("Sie sind bereits mit einem anderen Benutzernamen angemeldet");
-                }
-              })
-              .catch((e)=> {
-                  alert(`WHOOPS: ${e}`);
-              })
+  evt.preventDefault();
+  const values = Object.fromEntries(new FormData(evt.target));
+  var erg = 2;
+  fetch("/benutzer").then((res) => {
+    console.log(res.ok, res.status, res);
+    if (!res.ok) return Promise.reject(res.status);
+    return res.json();
+  }).then((benutzer) => {
+    benutzer.forEach((benutzer) => {
+      if(benutzer.benutzername === values.username && benutzer.passwort == values.pwd){
+        console.log("success");
+        erg = benutzer;
+        var url = "/login/"+benutzer.benutzername;{
+          fetch(url).then((res)=> {
+            if(res.ok){
+              console.log("success");
+              window.location = "startseite.html";
             }
-            
+            else {
+              alert("Sie sind bereits mit einem anderen Benutzernamen angemeldet");
+            }
+          }).catch((e)=> {
+            alert(`WHOOPS: ${e}`);
+          })
         }
-      });
-      if (erg === 2){
-        alert("Benutzername oder Passwort falsch!");
-      }  
-    })
-    .catch((e) => {
-      alert(`WHOOPS: ${e}`);
+            
+      }
     });
+    if (erg === 2){
+      alert("Benutzername oder Passwort falsch!");
+    }  
+  })
+  .catch((e) => {
+    alert(`WHOOPS: ${e}`);
+  });
 });
 
 createForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  
   const values = Object.fromEntries(new FormData(evt.target));
-
   console.log(values);
-
   if (values.username !== "" && values.pwd !== "") {
     console.log("b");
     fetch("/register", {
@@ -86,8 +74,8 @@ createForm.addEventListener("submit", (evt) => {
         alert("Der eingegebene Benutzername existiert bereits!");
       }
       else {
-      console.log(res.ok);
-      window.location = "login.html";
+        console.log(res.ok);
+        window.location = "login.html";
       }
     });
   
@@ -103,6 +91,4 @@ createForm.addEventListener("submit", (evt) => {
     const name = document.querySelector('#usernamer');
     alert("Bitte geben Sie ein Passwort ein!");
   }
-  });
-
-  
+  }); 

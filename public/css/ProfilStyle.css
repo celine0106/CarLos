@@ -2,34 +2,28 @@
     font-family: 'Work Sans', sans-serif;
     text-decoration: none;
 }
-
 .Flexbox {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 18px;
+}
+.row-page-header {
+    text-align: center;
 }
 
-body { 
-    background-color: rgba(255, 255, 255, 0.8);
-    
+.page-header {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    background-color: rgb(147, 174, 197);
 }
 
 button {
     border:none;
     background-color:  rgba(255, 255, 255, 0.03);
-}
-
-.Seiteninhalt {
-    background-color: rgb(147, 174, 197);
-    color: #3c3c3c;
-    font-size: 20px;
-    width: 1018px;
-    padding: 20px;
-    margin-top: 40px;
-    display: flex;
-    flex-direction: row;
-    text-transform: uppercase;
-   
 }
 
 .inputs {
@@ -50,7 +44,9 @@ td {
 }
 
 #Profilbild {
-    height: 100px;
-    padding-right: 20px;
+    height: 200px;
 }
 
+button:focus {
+    outline: none !important;
+}

@@ -54,7 +54,7 @@ td {
     font-size: 20px;
 }
 
-.Flexbox {
+.flexbox {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,15 +68,6 @@ body {
 .bild {
     height: 100px;
     width: 150px;
-}
-
-.Seiteninhalt {
-    background-color: rgba(255, 255, 255, 0.644);
-    color: #3c3c3c;
-    font-size: 20px;
-    width: 980px;
-    padding: 20px;
-    margin-bottom: 40px;
 }
 
 #Filter {
@@ -148,10 +139,6 @@ body {
 
 #zweiteZeile {
     margin-top: 0mm;
-}
-
-.Basisdaten {
-    margin-right: 5px;
 }
 
 input[type=text], textarea{

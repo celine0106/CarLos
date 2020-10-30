@@ -58,7 +58,7 @@ button.addEventListener("submit", (evt)=> {
             + '<p class="card-text">' + angebot.Beschreibung + '</p>'
         + '</div>'
         + '</div>'
-        list.appendChild(listItem);
+list.appendChild(listItem);
         }
       });
     })

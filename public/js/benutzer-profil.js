@@ -21,12 +21,15 @@ window.addEventListener( "pageshow", function ( event ) {
 });
 //Ende Quelle
 
+//Überprüfung, ob der Benutzer angemeldet ist
 fetch("/angemeldet").then((res)=> {
   console.log(res.ok, res.status, res);
+    //Weiterleitung auf Loginseite, wenn der Benutzer nicht angemeldet ist
     if(res.status === 401){
       alert('Bitte melden Sie sich an um ein Profil erstellen zu können!');
       window.location = "login.html";
     }
+    //Daten des angemeldeten Benutzers anzeigen
     else {
       fetch("/meineDatenAnzeigen").then((res) => {
         console.log(res.ok, res.status, res);
@@ -49,6 +52,7 @@ fetch("/angemeldet").then((res)=> {
 
 Vorname.addEventListener("submit", (evt)=> {
   evt.preventDefault();
+  //Vorname kann bearbeitet werden
   if(bearbeitbarV == false) {
     document.querySelector('#Vorname').readOnly = false;
     bearbeitbarV = true;
@@ -58,6 +62,7 @@ Vorname.addEventListener("submit", (evt)=> {
     + '</svg>';
     document.querySelector('#Vorname').style.backgroundColor = "rgba(255, 255, 255, 0.644)";
   }
+  //Vorname kann nicht mehr bearbeitet werden
   else {
     const values = Object.fromEntries(new FormData(evt.target));
     console.log(values);
@@ -69,6 +74,7 @@ Vorname.addEventListener("submit", (evt)=> {
     '</svg>';
     document.querySelector('#Vorname').style.background = "none";
 
+    //Vorname wird über fetch-Aufruf in der Datenbank aktualisiert
     fetch("/vornameaktualisierung", {
       method: "PATCH",
       body: JSON.stringify(values),
@@ -78,14 +84,16 @@ Vorname.addEventListener("submit", (evt)=> {
     }).then((res) => {
       console.log(res.ok);
     });
-        
+    
     console.log("FORM SUBMITTED", values);
   }
 });
 
 const Nachname = document.querySelector('#n');
+
 Nachname.addEventListener("submit", (evt)=> {
   evt.preventDefault();
+  //Nachname kann bearbeitet werden
   if (bearbeitbarN == false){
     document.querySelector('#Nachname').readOnly = false;
     bearbeitbarN = true;
@@ -95,6 +103,7 @@ Nachname.addEventListener("submit", (evt)=> {
     + '</svg>';
     document.querySelector('#Nachname').style.backgroundColor = "rgba(255, 255, 255, 0.644)";
     }
+  //Nachname kann nicht mehr bearbeitet werden
   else {
     const values = Object.fromEntries(new FormData(evt.target));
     console.log(values);
@@ -106,6 +115,7 @@ Nachname.addEventListener("submit", (evt)=> {
     '</svg>';
     document.querySelector('#Nachname').style.background = "none";
 
+    //Nachname wird über fetch-Aufruf in der Datenbank aktualisiert
     fetch("/nachnameaktualisierung", {
       method: "PATCH",
       body: JSON.stringify(values),
@@ -124,6 +134,7 @@ const Email = document.querySelector('#e');
 
 Email.addEventListener("submit", (evt)=> {
   evt.preventDefault();
+  //Email kann bearbeitet werden
   if (bearbeitbarE == false){
     document.querySelector('#Email').readOnly = false;
     bearbeitbarE = true;	
@@ -133,6 +144,7 @@ Email.addEventListener("submit", (evt)=> {
     + '</svg>';
     document.querySelector('#Email').style.backgroundColor = "rgba(255, 255, 255, 0.644)";
   }
+  //Email kann nicht mehr bearbeitet werden
   else {
     const values = Object.fromEntries(new FormData(evt.target));
     console.log(values);
@@ -143,6 +155,8 @@ Email.addEventListener("submit", (evt)=> {
     '<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>' +
     '</svg>';
     document.querySelector('#Email').style.background = "none";
+    
+    //Email wird über fetch-Aufruf in der Datenbank aktualisiert
     fetch("/emailaktualisierung", {
       method: "PATCH",
       body: JSON.stringify(values),
@@ -161,6 +175,7 @@ const Telefon = document.querySelector('#t');
 
 Telefon.addEventListener("submit", (evt)=> {
   evt.preventDefault();
+  //Telefonnummer kann bearbeitet werden
   if (bearbeitbarT == false){
     document.querySelector('#Telefon').readOnly = false;
     bearbeitbarT = true;
@@ -170,6 +185,7 @@ Telefon.addEventListener("submit", (evt)=> {
     + '</svg>';
     document.querySelector('#Telefon').style.backgroundColor = "rgba(255, 255, 255, 0.644)";
   }
+  //Telefonnummer kann nicht mehr bearbeitet werden
   else {
     const values = Object.fromEntries(new FormData(evt.target));
     console.log(values);
@@ -180,6 +196,8 @@ Telefon.addEventListener("submit", (evt)=> {
     '<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>' +
     '</svg>';
     document.querySelector('#Telefon').style.background = "none";
+
+    //Telefonnummer wird über fetch-Aufruf in der Datenbank aktualisiert
     fetch("/telefonaktualisierung", {
         method: "PATCH",
         body: JSON.stringify(values),

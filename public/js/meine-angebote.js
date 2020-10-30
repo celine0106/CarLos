@@ -37,11 +37,14 @@ window.addEventListener( "pageshow", function ( event ) {
 
 const list = document.querySelector("#Angebotsliste1");
 
+//Überprüfung, ob der Benutzer angemeldet ist
 fetch("/angemeldet").then ((res) => {
+  //Weiterleitung auf Loginseite, wenn der Benutzer nicht angemeldet ist
   if(res.status === 401) {
     alert('Bitte melden Sie sich an um Angebote zu erstellen!');
     window.location = "login.html";
   } 
+  //Angebote des angemeldeten Benutzers aus der Datenbank anzeigen 
   else {
     fetch("/Meineinserate").then((res) => {
       console.log(res.ok, res.status, res);
@@ -88,7 +91,8 @@ fetch("/angemeldet").then ((res) => {
               listItem.append(deletebtn, editbtn);
               list.appendChild(listItem); 
             })
-          })      
+          }) 
+
         // Modal Fenster für das Bearbeiten eines Angebots öffnen
         var modalEdit = document.getElementById("modalEdit");
         editbtn.onclick = function() {
@@ -99,7 +103,7 @@ fetch("/angemeldet").then ((res) => {
             modalEdit.style.display = "none";
           }
         }
-
+        //Bisher gespeicherte Werte im Modalfenster zur Bearbeitung anzeigen
         editbtn.addEventListener("click", (evt) => {
           evt.preventDefault();          
           p.value = angebot.Preis;
@@ -117,7 +121,7 @@ fetch("/angemeldet").then ((res) => {
             window.location = "meine-angebote.html";
           });
 
-            //Fetch-Aufruf der Update-Methode
+          //Fetch-Aufruf der Update-Methode
           saveEdit.addEventListener("submit", (evt) => {
             evt.preventDefault();
             const valuesChange = Object.fromEntries(new FormData(evt.target));
@@ -125,6 +129,8 @@ fetch("/angemeldet").then ((res) => {
             if(valuesChange.o == '' || valuesChange.bes === '' || valuesChange.m === '' || valuesChange.mo === '' || valuesChange.e === '' || valuesChange.p === '') {
               alert("Bitte füllen Sie alle Felder!");
             }
+
+            //Bild hochladen, falls dieses geändert wurde
             else {
               if(!inputbd.files[0]){
                 valuesChange.bd = angebot.Bild;
@@ -141,6 +147,7 @@ fetch("/angemeldet").then ((res) => {
                 }).then(res => res.json()).then(json => console.log(json)).catch(err => console.error(err));
               }
               
+              //aktualisierte Werte über fetch in der Datenbank speichern
               var km = valuesChange.k;
               km = km.toString().replace(/\./, '');
               valuesChange.k = km;
@@ -183,7 +190,7 @@ fetch("/angemeldet").then ((res) => {
       alert(`WHOOPS: ${e}`);
   }); 
 
-
+  //neues Angebot erstellen
   const createForm = document.querySelector('#aerstellen');
   const abbrechenButton = document.querySelector('#abbrechnen');
   var erg = 2;
@@ -209,6 +216,7 @@ fetch("/angemeldet").then ((res) => {
       var km = values.kilometer;
       km = km.toString().replace(/\./, '');
       values.kilometer = km;
+        //Angebot über fetch-Aufruf in der Datenbank speichern
         fetch("/meineAngebote", {
           method: "POST",
           body: JSON.stringify(values),
@@ -220,6 +228,7 @@ fetch("/angemeldet").then ((res) => {
             const fd = new FormData();
             fd.append('bild', inputbild.files[0]);
             console.log(inputbild.files[0]);
+            //Bild des Angebots hochladen 
             fetch('/uploadBild', {
               method: "post",
               body: fd

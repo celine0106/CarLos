@@ -7,8 +7,8 @@ const fileUpload = require("express-fileupload");
 
 const app = express();
 
+// Verbindung zur Datenbank aufbauen
 let connection;
-
 mysql
   .createConnection({
     host: "localhost",
@@ -37,6 +37,7 @@ app.use(
   })
 );
 
+//Sessions bei der Anmeldung setzen
 app.get("/login/:username", (req, res) => {
   try {
     if(!req.session.username || req.session.username === req.params.username){
@@ -54,6 +55,7 @@ app.get("/login/:username", (req, res) => {
   }
 });
 
+//Überprüfung, ob der Benutzer angemeldet ist
 app.get("/angemeldet", async (req,res) => {
   try {
     if (!req.session.username) {
@@ -69,6 +71,7 @@ app.get("/angemeldet", async (req,res) => {
   }
 })
 
+//Session beim Logout beenden
 app.get("/logout", async (req,res) => {
   try {
     req.session.destroy();
@@ -80,6 +83,7 @@ app.get("/logout", async (req,res) => {
   }
 })
 
+//Auswahl des Topangebots für die Startseite
 app.get("/topangebot", async (req, res) => {
   try {
     const [rows] = await connection.execute("SELECT * FROM angebot where preis = (SELECT min(preis) FROM angebot)");
@@ -91,6 +95,7 @@ app.get("/topangebot", async (req, res) => {
     console.log("Fehler: " + err);
   }
 })
+
 //Daten des angemeldeten Benutzer 
 app.get("/meineDatenAnzeigen", async (req, res) => {
   try {
@@ -165,7 +170,7 @@ app.get("/angebotId", async (req, res) =>{
   } 
 })
 
-
+//alle Benutzer aus der Datenbank
 app.get("/benutzer", async (req, res) => {
   try {
     const [rows] = await connection.execute("SELECT * FROM benutzer");
@@ -178,6 +183,7 @@ app.get("/benutzer", async (req, res) => {
   }   
 });
 
+//Benutzer bei Registrierung in der Datenbank speichern
 app.post("/register", async (req, res) => {
   try {
     const[affectedRows] = await connection.execute ("SELECT * FROM benutzer where benutzername = ?", [req.body.username]);
@@ -208,6 +214,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
+//Vorname eines Benutzers aktualisieren 
 app.patch("/vornameaktualisierung", async (req, res) => {
   try {
     const[affectedRows] = await connection.execute ("UPDATE benutzer SET vorname = ? where benutzername = ?", [req.body.Vorname, req.session.username]);
@@ -223,6 +230,7 @@ app.patch("/vornameaktualisierung", async (req, res) => {
   }
 });
 
+//Nachname eines Benutzers aktualisieren 
 app.patch("/nachnameaktualisierung", async (req, res) => {
   try {
     const[affectedRows] = await connection.execute ("UPDATE benutzer SET nachname = ? where benutzername = ?", [req.body.Nachname, req.session.username]);
@@ -238,6 +246,7 @@ app.patch("/nachnameaktualisierung", async (req, res) => {
   }
 });
 
+//Telefon eines Benutzers aktualisieren 
 app.patch("/telefonaktualisierung", async (req, res) => {
   try {
     const[affectedRows] = await connection.execute ("UPDATE benutzer SET telefon = ? where benutzername = ?", [req.body.Telefon, req.session.username]);
@@ -253,6 +262,7 @@ app.patch("/telefonaktualisierung", async (req, res) => {
   }
 });
 
+//Email eines Benutzers aktualisieren 
 app.patch("/emailaktualisierung", async (req, res) => {
   try {
     const[affectedRows] = await connection.execute ("UPDATE benutzer SET email = ? where benutzername = ?", [req.body.Email, req.session.username]);
@@ -268,7 +278,7 @@ app.patch("/emailaktualisierung", async (req, res) => {
   }
 });
 
-// Delete an Angebot 
+//Angebot anhand der ID löschen
 app.delete("/angebotLoeschen/:id", async (req, res) => {
   try {
     console.log(req.params.id);
@@ -289,7 +299,7 @@ app.delete("/angebotLoeschen/:id", async (req, res) => {
   }
 });
 
-//Insert an Angebot 
+//Angebot einfügen
 app.post("/meineAngebote", async (req, res) => {
   try {
     const [
@@ -318,6 +328,7 @@ app.post("/meineAngebote", async (req, res) => {
   }
 });
 
+//Bild in dem uploads-Ordner speichern
 app.post('/uploadBild', async (req,res) =>{
   try {
     if(!req.files) {
@@ -346,7 +357,7 @@ app.post('/uploadBild', async (req,res) =>{
     }
 });
 
-//Update an Angebot 
+//Angebot aktualisieren
 app.patch("/meinAngebotUpdate/:id", async(req,res) =>{
   try {
     const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ? WHERE ID =?", 

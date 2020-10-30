@@ -10,10 +10,11 @@
     </head>
 
 <body>
-    <div class="Navigationsleiste">
+    
+    <div class= "Flexbox">
+        <div class="Navigationsleiste">
             <iframe scrolling="no" src="NLIndex.html"></iframe>
         </div>
-    <div class= "Flexbox">
         <div class="intro">
             <div class="intro-label">
                 <img src="../img/Unbenannt-2.png" alt="intro">
@@ -118,29 +119,29 @@
                         
                     </tbody>
                 </table>
-                    <input type="submit" id="Suche" value= "Angebote suchen">
+                <div class="row">
+                    <button class="btn btn-light" type="submit">Angebote suchen</button>
+                </div>
             </form>
         </div>
         <p id="Unterüberschrift">Unser Top-Angebot:</p>
-        <div class="container-fluid">
-            <div class="row d-inline-flex">
-                <div id="Angebotsliste">
-                    <div class="col-6 col-sm-4 col-md-4 p-2">
-                            <div class="card h-100">
-                                <img class="card-img-top" src="../img/Audibild.jpg" alt="Autobild">
-                                <div class="card-body">
-                                    <h5 class="card-title">Audi</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">A3</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">15.000 €</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">8000 km</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">Stuttgart</h6>
-                                    <p class="card-text">Hier steht eine kurze Beschreibung xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                                </div>
-                            </div>
+        <div class="container">
+            <div id="Angebotsliste" class="row">
+                <div class="col-lg-12 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="../img/Audibild.jpg" alt="Autobild">
+                        <div class="card-body">
+                            <h5 class="card-title">Audi</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Modell: A3</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Preis: 15.000 €</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Kilometerstand: 8000 km</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Ort: Stuttgart</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Händler: Audi Stuttgart</h6>
+                            <p class="card-text">Hier steht eine kurze Beschreibung xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
                         </div>
-                    </div> 
+                    </div>
                 </div>
-            </div>
+            </div> 
         </div> 
     </div>
     <script src="../js/StartseiteScript.js"></script>

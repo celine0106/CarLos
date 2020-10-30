@@ -1,11 +1,20 @@
 * {
     font-family: 'Work Sans', sans-serif;
-    font-weight: 200;
     text-decoration: none;
 }
 
 .card {
     display:inline-block;
+}
+
+.row {
+    justify-content: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover; 
 }
 
 .intro { 
@@ -145,10 +154,6 @@ body {
     margin-right: 5px;
 }
 
-#Angebotsliste {
-    list-style-type: none;
-}
-
 input[type=text], textarea{
     width: 100%;
     height: 25px;
@@ -162,7 +167,6 @@ input[type=text], textarea{
   }
 
   select{
-    width: 100%;
     height: 25px;
     margin: 8px 0;
     display: inline-block;

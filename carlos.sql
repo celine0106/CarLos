@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Okt 2020 um 12:57
+-- Erstellungszeit: 30. Okt 2020 um 19:16
 -- Server-Version: 10.4.14-MariaDB
 -- PHP-Version: 7.4.9
 
@@ -20,14 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `carlos`
 --
-CREATE DATABASE `carlos`;
 
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `angebot`
 --
-USE `carlos`;
+
 CREATE TABLE `angebot` (
   `ID` int(10) NOT NULL,
   `Preis` double(8,2) NOT NULL,
@@ -46,16 +45,15 @@ CREATE TABLE `angebot` (
 --
 
 INSERT INTO `angebot` (`ID`, `Preis`, `Kilometer`, `Ort`, `Erstzulassung`, `Bild`, `Beschreibung`, `Autor`, `Marke`, `Modell`) VALUES
-(1, 5000.89, 60000, 'Stuttgart', 1998, 's', 'snfwNF', 'AD', 'AD', 'AD'),
-(2, 5000.89, 60000, 'Stuttgart', 1998, 's', 'snfwNF', 'AD', 'AD', 'AD');
-
+(1, 5000.00, 60000, 'Stuttgart', 2012, 'audiblau.jpg', 'Hier können Sie einen Wagen erwerben.', 'testbenutzername', 'Audi', 'A3'),
+(2, 15000.00, 100000, 'Stuttgart', 2015, 'MercedesC.jpg', 'Wenn Sie dieses Auto kaufen möchten, können Sie uns unter der angegebenen Telefonnummer erreichen.', 'testbenutzername', 'Mercedes', 'C-Klasse');
 
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `benutzer`
 --
-USE `carlos`;
+
 CREATE TABLE `benutzer` (
   `benutzername` varchar(40) NOT NULL,
   `passwort` varchar(30) NOT NULL,
@@ -70,8 +68,7 @@ CREATE TABLE `benutzer` (
 --
 
 INSERT INTO `benutzer` (`benutzername`, `passwort`, `vorname`, `nachname`, `telefon`, `email`) VALUES
-('d', 'd', 'd', 'd', 1, 'eirjwerj3e33@ds'),
-('testbenutzername', 'test123', 'test', 'testN', 73456789, 'test@testmail.de');
+('testbenutzername', 'test123', 'testVorname', 'testNachname', 73456789, 'test@testmail.de');
 
 --
 -- Indizes der exportierten Tabellen

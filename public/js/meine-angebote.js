@@ -151,6 +151,9 @@ fetch("/angemeldet").then ((res) => {
               var km = valuesChange.k;
               km = km.toString().replace(/\./, '');
               valuesChange.k = km;
+              var pr = valuesChange.p;
+              pr = pr.toString().replace(/\./, '');
+              valuesChange.p = pr.toString().replace(/\,/, '.');
               console.log(valuesChange);
               fetch(`/meinAngebotUpdate/${angebot.ID}`, {
               method: "PATCH",

@@ -41,7 +41,7 @@ fetch("/angemeldet")
   .then ((res) => {
     if(res.status === 401) {
       alert('Bitte melden Sie sich an um Angebote zu erstellen!');
-      window.location = "loginIndex.html";
+      window.location = "login.html";
     } 
     else {
       fetch("/Meineinserate").then((res) => {
@@ -122,7 +122,7 @@ fetch("/angemeldet")
             //Modal-Fenster abbrechen 
             abbrechenEdit.addEventListener("click", (evt) => {
               evt.preventDefault();
-              window.location = "MAIndex.html";
+              window.location = "meine-angebote.html";
             });
 
             //Fetch-Aufruf der Update-Methode
@@ -138,7 +138,7 @@ fetch("/angemeldet")
                 "content-type": "application/json",
               },
               }).then((res)=> {
-                window.location="MAIndex.html";
+                window.location="meine-angebote.html";
                 console.log(res.status);
               })
             })
@@ -155,7 +155,7 @@ fetch("/angemeldet")
                   "Content-Type": "application/json",
                 },
               }).then ((res) => {
-                window.location = "MAIndex.html";
+                window.location = "meine-angebote.html";
               })
             };
           })
@@ -175,7 +175,7 @@ fetch("/angemeldet")
 
   abbrechenButton.addEventListener("click", (evt) => {
     evt.preventDefault();
-    window.location = "MAIndex.html";
+    window.location = "meine-angebote.html";
   });
 
   const inputbild = document.getElementById("bild");
@@ -225,7 +225,7 @@ fetch("/angemeldet")
                 .then(res => res.json())
                 .then(json => console.log(json))
                 .catch(err => console.error(err));
-              window.location = "MAIndex.html";
+              window.location = "meine-angebote.html";
               }).catch((e)=>{
                 alert(`Whoops: ${e}`);
               });

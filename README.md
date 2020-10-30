@@ -18,7 +18,7 @@ Nach einer erfolgreichen Registrierung und dem Login ist es den Nutzern möglich
 * .env file mit dem Inhalt DB_PASSWORD="" in Visual Studio Code anlegen 
 * MySQL starten
 * node server.js in der Command Line eingeben 
-* http://localhost:5100/views/logInIndex im Browser öffnen
+* http://localhost:5100/views/login im Browser öffnen
 ```
 
 ## Architektur

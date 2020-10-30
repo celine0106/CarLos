@@ -68,6 +68,15 @@ app.get("/meineDatenAnzeigen", async (req, res) => {
   res.json(rows);
 });
 
+//Daten des jeweiligen Händlers anzeigen 
+app.get("/HaendlerDatenAnzeigen/:username", async (req, res) => {
+  console.log(req.params.username);
+  const [rows] = await connection.execute("SELECT * FROM benutzer where benutzername = ?", [req.params.username]);
+  console.log(rows);
+
+  res.json(rows);
+});
+
 //erstellte Angebote eines Benutzers
 app.get("/Meineinserate", async (req, res) => {
   console.log(req.session.username);
@@ -102,6 +111,7 @@ app.get("/benutzer", async (req, res) => {
       
     res.json(rows);
 });
+
 app.post("/register", async (req, res) => {
   const[affectedRows] = await connection.execute ("SELECT * FROM benutzer where benutzername = ?", [req.body.username]);
   if (affectedRows == 0){
@@ -185,7 +195,7 @@ app.post("/meineAngebote", async (req, res) => {
   ] = await connection.execute(
     "INSERT INTO angebot (Preis, Kilometer, Ort, Erstzulassung, Bild, Beschreibung, Autor, Marke, Modell) \
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.Bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]
+    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.Bild,req.body.bes,req.session.username,req.body.marke,req.body.modell]
   );
 
   res.json({
@@ -195,7 +205,7 @@ app.post("/meineAngebote", async (req, res) => {
     Erstzulassung: req.body.erstz,
     Bild: req.body.bild,
     Beschreibung: req.body.bes,
-    Autor: req.body.autor,
+    Autor: req.session.username,
     Marke: req.body.marke,
     Modell: req.body.modell,
   });
@@ -232,7 +242,7 @@ app.post('/uploadBild', async (req,res) =>{
 app.patch("/meinAngebotUpdate/:id", async(req,res) =>{
 
   const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ? WHERE ID =?", 
-  [req.body.p,req.body.k,req.body.o,req.body.e,req.body.bd,req.body.bes,req.body.a,req.body.m,req.body.mo, req.params.id]);
+  [req.body.p,req.body.k,req.body.o,req.body.e,req.body.bd,req.body.bes,req.session.username,req.body.m,req.body.mo, req.params.id]);
   res.json({
     Preis: req.body.p,
     Kilometer: req.body.k,
@@ -240,7 +250,7 @@ app.patch("/meinAngebotUpdate/:id", async(req,res) =>{
     Erstzulassung: req.body.e,
     Bild: req.body.bd,
     Beschreibung: req.body.bes,
-    Autor: req.body.a,
+    Autor: req.session.username,
     Marke: req.body.m,
     Modell: req.body.mo,
   });

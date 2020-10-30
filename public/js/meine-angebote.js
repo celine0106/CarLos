@@ -63,22 +63,32 @@ fetch("/angemeldet").then ((res) => {
         deletebtn.className = ("btn btn-danger mr-2")
         deletebtn.innerHTML = 'Löschen';
         const quelle = "../uploads/"+ angebot.Bild;
-        listItem.innerHTML = 
-        '<div class="card">'
-        + '<img class="card-img-top" src="'+ quelle +'" alt="Autobild">'
-        + '<div class="card-body">' 
-        + '<h5 class="card-title pt-2">' + angebot.Marke + '</h5>'
-        + '<h6 class="card-subtitle mb-2 text-muted">' + "Modell: " + angebot.Modell + '</h6>'
-        + '<h6 class="card-subtitle mb-2 text-muted">' + "Preis: " + ausgabepreis + " €" + '</h6>'
-        + '<h6 class="card-subtitle mb-2 text-muted">' + "Kilometerstand: " + angebot.Kilometer + " km" + '</h6>'
-        + '<h6 class="card-subtitle mb-2 text-muted">' + "Ort: " + angebot.Ort + '</h6>'
-        + '<h6 class="card-subtitle mb-2 text-muted">' + "Händler: " + angebot.Autor + '</h6>'
-        + '<p class="card-text w-30">' + angebot.Beschreibung + '</p>'
-        + '</div>'
-        + '</div>'
-        + '</div>';
-        listItem.append(deletebtn, editbtn);
-        list.appendChild(listItem);        
+        fetch(`/HaendlerDatenAnzeigen/${angebot.Autor}`).then((res)=> {
+          console.log(res.ok, res.status, res);
+          if (!res.ok) return Promise.reject(res.status);
+    
+          return res.json();
+          }).then((haendlers) => {
+            haendlers.forEach((haendler) => {
+              listItem.innerHTML = 
+              '<div class="card">'
+              + '<img class="card-img-top" src="'+ quelle +'" alt="Autobild">'
+              + '<div class="card-body">' 
+              + '<h5 class="card-title pt-2">' + angebot.Marke + '</h5>'
+              + '<h6 class="card-subtitle mb-2 text-muted">' + "Modell: " + angebot.Modell + '</h6>'
+              + '<h6 class="card-subtitle mb-2 text-muted">' + "Preis: " + ausgabepreis + " €" + '</h6>'
+              + '<h6 class="card-subtitle mb-2 text-muted">' + "Kilometerstand: " + angebot.Kilometer + " km" + '</h6>'
+              + '<h6 class="card-subtitle mb-2 text-muted">' + "Ort: " + angebot.Ort + '</h6>'
+              + '<h6 class="card-subtitle mb-2 text-muted">' + "Händler: " + angebot.Autor +  "; Telefon: " + haendler.telefon + '</h6>'
+              + '<h6 class="card-subtitle mb-2 text-muted">' + "Erstzulassung: " + angebot.Erstzulassung + '</h6>'
+              + '<p class="card-text w-30">' + angebot.Beschreibung + '</p>'
+              + '</div>'
+              + '</div>'
+              + '</div>';
+              listItem.append(deletebtn, editbtn);
+              list.appendChild(listItem); 
+            })
+          })      
         // Modal Fenster für das Bearbeiten eines Angebots öffnen
         var modalEdit = document.getElementById("modalEdit");
         editbtn.onclick = function() {
@@ -97,7 +107,6 @@ fetch("/angemeldet").then ((res) => {
           o.value = angebot.Ort;
           e.value = angebot.Erstzulassung;
           bess.value = angebot.Beschreibung;
-          a.value = angebot.Autor;
           m.value = angebot.Marke;
           mo.value = angebot.Modell;
           const abbrechenEdit = document.querySelector('#abbrechenEdit');
@@ -125,7 +134,9 @@ fetch("/angemeldet").then ((res) => {
                 console.log(valuesChange.Bild);
               }
               
-
+              var km = valuesChange.k;
+              km = km.toString().replace(/\./, '');
+              valuesChange.k = km;
               console.log(valuesChange);
               fetch(`/meinAngebotUpdate/${angebot.ID}`, {
               method: "PATCH",
@@ -188,53 +199,38 @@ fetch("/angemeldet").then ((res) => {
     evt.preventDefault();
     const values = Object.fromEntries(new FormData(evt.target));
     console.log(values);
-    fetch("/benutzer").then((res) => {
-      console.log(res.ok, res.status, res);
-      if (!res.ok) return Promise.reject(res.status);
-        return res.json();
-      }).then((benutzer) => {
-        benutzer.forEach((benutzer) => {
-          if(benutzer.benutzername === values.autor){
-              console.log("success");
-              erg = benutzer;
-              if(values.ort == '' || values.bild === '' || values.bes === '' || values.marke === '' || values.modell === '' || values.erstz === '' || values.preis === '') {
-                alert("Bitte füllen Sie alle Felder!");
-              }
-              else {
-                values.Bild = inputbild.files[0].name;
-                console.log(values.Bild);
-              var preis = values.preis;
-              preis = preis.toString().replace(/\./, '');
-              values.preis = preis.toString().replace(/\,/, '.');
-              fetch("/meineAngebote", {
-                method: "POST",
-                body: JSON.stringify(values),
-                headers: {
-                  "content-type": "application/json",
-                },
-              }).then((res) => {
-                  console.log(res.ok);
-                  const fd = new FormData();
-                  fd.append('bild', inputbild.files[0]);
-                  console.log(inputbild.files[0]);
-                  fetch('/uploadBild', {
-                  method: "post",
-                  body: fd
-                  }).then(res => res.json()).then(json => console.log(json)).catch(err => console.error(err));
+    if(values.ort == '' || values.bild === '' || values.bes === '' || values.marke === '' || values.modell === '' || values.erstz === '' || values.preis === '') {
+     alert("Bitte füllen Sie alle Felder!");
+    }
+    else {
+      values.Bild = inputbild.files[0].name;
+      console.log(values.Bild);
+      var preis = values.preis;
+      preis = preis.toString().replace(/\./, '');
+      values.preis = preis.toString().replace(/\,/, '.');
+      var km = values.kilometer;
+      km = km.toString().replace(/\./, '');
+      values.kilometer = km;
+        fetch("/meineAngebote", {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+              "content-type": "application/json",
+          },
+          }).then((res) => {
+            console.log(res.ok);
+            const fd = new FormData();
+            fd.append('bild', inputbild.files[0]);
+            console.log(inputbild.files[0]);
+            fetch('/uploadBild', {
+              method: "post",
+              body: fd
+            }).then(res => res.json()).then(json => console.log(json)).catch(err => console.error(err));
               window.location = "meine-angebote.html";
-              }).catch((e)=>{
-                alert(`Whoops: ${e}`);
-              });
+          }).catch((e)=>{
+            alert(`Whoops: ${e}`);
+          });
             
-              console.log("FORM SUBMITTED", values);
-          }
+          console.log("FORM SUBMITTED", values);
         }
-        });
-        if (erg === 2){
-          alert("Benutzername nicht gefunden! Bitte überprüfen Sie Ihre Eingabe im Feld Autor.");
-        }  
-      })
-      .catch((e) => {
-        alert(`WHOOPS: ${e}`);
-      });
   });

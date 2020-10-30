@@ -1,52 +1,53 @@
-*{
-    font-family: Arial, Helvetica, sans-serif;
+* {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.card {
+    display:inline-block;
 }
 
 body { 
-    background-color: rgba(173, 148, 117, 0.8);
+    background-color: rgb(255, 252, 249);
 }
 
 .Seiteninhalt {
-    background-color: rgba(255, 255, 255, 0.644);
+    background-color:  rgb(147, 174, 197);
     color: #3c3c3c;
     font-size: 20px;
     width: 1018px;
     height: 100%;
     padding: 20px;
-    margin: 0 auto;
-}
+    margin-top: 10px;
+    text-transform: uppercase;
 
-.Navigationsleiste {
-  border: 0px none;
-  width: 1019px;
-  height: 70px;
-  align-content: center;
-  overflow: hidden; 
 }
 
 #Überschrift {
-    font-size: 40px;
-}
-#PlusButton{
-    background:rgb(94, 71, 41);
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(94, 71, 41);
-    height: 35px;
-    width: 50px;
-    font-size: 20px;
-    color: white;
+    font-size: 35px;
 }
 
-#PlusButton:hover{
-    background: rgb(88, 62, 28);
+#PlusButton {
+    background:rgb(66, 66, 66);
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(94, 71, 41);
     height: 35px;
     width: 50px;
     font-size: 20px;
-    color: white;
+    color: rgba(255, 254, 254, 0.966);
+    
+}
+
+#PlusButton:hover {
+    background: rgb(82, 80, 80);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(107, 107, 107);
+    height: 35px;
+    width: 50px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
@@ -55,18 +56,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-}
-.Navigationsleiste {
-    border: 0px none;
-    width: 1018px;
-    height: 50px;
-    align-content: center;
-    overflow: hidden;   
-}
-iframe {
-    border: none;
-    width: 1100px;
-    height: 750px;
 }
 
 .modal {
@@ -81,7 +70,7 @@ iframe {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+}
   
   /* Modal Content */
   .modal-content {
@@ -101,60 +90,60 @@ iframe {
     animation-duration: 0.4s;
   }
   
-  /* The Close Button */
-  .close {
+/* The Close Button */
+.close {
     color: #2b2b2b;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
+}
 
-  @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}    
     to {top:0; opacity:1}
-  }
-  
-  @keyframes animatetop {
+}
+
+@keyframes animatetop {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
-  }
+}
 
-  .modal-header {
+.modal-header {
     padding: 2px 16px;
     text-align: center;
-  }
+}
 
-  .modal-body {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+.modal-body {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-  .modal-footer {
+.modal-footer {
     padding: 2px 16px;
-  }
+}
 
-  .cancelbtn {
-      background-color: #888;
-      border-style: solid;
-      border-color: #888;
-      color: white;
-  }
+.cancelbtn {
+    background-color: #888;
+    border-style: solid;
+    border-color: #888;
+    color: white;
+}
 
-  .savebtn {
-      background-color: darkolivegreen;
-      border-style: solid;
-      border-color: darkolivegreen;
-      color: white;
-  }
+.savebtn {
+    background-color: darkolivegreen;
+    border-style: solid;
+    border-color: darkolivegreen;
+    color: white;
+}
 
-  input[type=text], textarea{
+input[type=text], textarea{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -163,9 +152,10 @@ iframe {
     border-radius: 4px;
     box-sizing: border-box;
     resize: none;
-  }
+}
 
-  input[type=text]:focus {
+input[type=text]:focus {
     border: 3px solid #555;
-  }
+}
+
 

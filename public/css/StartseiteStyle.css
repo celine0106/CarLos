@@ -1,45 +1,59 @@
-*{
+* {
     font-family: 'Work Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 200;
     text-decoration: none;
 }
 
+.card {
+    display:inline-block;
+}
 
+.intro { 
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: center;
+    background-image: url('../img/arvid-skywalker-S8-laIv65DM-unsplash\ 2.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center; 
+    position: relative;
+    height: 600px;
+    width: 100%;
+    color: white;
+}
+
+.intro-label {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    display: flex;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;;
+    width: 100%;
+    justify-content: center;
+    background-color: rgb(147, 174, 197);
+}
 
 td {
     margin-top: 5mm;
     margin-left: 5mm;
     margin-right: 5mm;
     padding: 2mm;
+    font-size: 20px;
 }
- .Flexbox {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: space-between;
- }
- .Navigationsleiste {
-    border: 0px none;
-    width: 1020px;
-    height: 70px;
-    align-content: center;
-    overflow: hidden; 
-}
-iframe {
-    border: none;
-    width: 1100px;
-    height: 750px;
-    
+
+.Flexbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 body { 
-    background-color: #525252;
-}
-
-table {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
 }
 
 .bild {
@@ -54,11 +68,12 @@ table {
     width: 980px;
     padding: 20px;
     margin-bottom: 40px;
-    
 }
+
 #Filter {
     height: 50%;
 }
+
 #Überschrift {
     font-size: 40px;
     justify-items: space-between;
@@ -70,37 +85,39 @@ table {
     cursor: pointer;
     display: block;
     margin: auto;
-    background: linear-gradient(to right, #a4957d, #6c604b);
+    background-color: white;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    color: black;
+    margin-top: 20px;   
+    font-size: 20px; 
+}
+
+#Suche:hover{
+    width: 30%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background-color: grey;
     border: 0;
     outline: none;
     border-radius: 30px;
     color: white;
     margin-top: 20px;
-    
-}
-
- #Suche:hover{
-    width: 30%;
-        padding: 10px 30px;
-        cursor: pointer;
-        display: block;
-        margin: auto;
-        background: linear-gradient(to right, #a4957d, #6c604b);
-        border: 0;
-        outline: none;
-        border-radius: 30px;
-        color: white;
-        margin-top: 20px;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
  
-
 #Unterüberschrift {
     font-size:30px;
+    margin-top: 20px;
 }
+
 #Angebotsbild {
     margin-right: 12px;
 }
+
 #Angebote {
     height: 10%;
 }
@@ -114,6 +131,7 @@ table {
 #Angebotsbild {
     margin-right: 12px;
 }
+
 #ersteZeile {
     display: flex;
     flex-direction: row;

@@ -1,5 +1,6 @@
-*{
-    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+* {
+    font-family: 'Work Sans', sans-serif;
+    text-decoration: none;
 }
 
 .Flexbox {
@@ -9,46 +10,38 @@
 }
 
 body { 
-    background-color: rgba(173, 148, 117, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     
 }
- button {
-     border:none;
-     background-color:  rgba(255, 255, 255, 0.03);
- }
-.Navigationsleiste {
-    border: 0px none;
-    width: 1018px;
-    height: 50px;
-    align-content: center;
-    overflow: hidden; 
-    
-}
-iframe {
-    border: none;
-    width: 1100px;
-    height: 750px;
+
+button {
+    border:none;
+    background-color:  rgba(255, 255, 255, 0.03);
 }
 
 .Seiteninhalt {
-    background-color: rgba(255, 255, 255, 0.644);
+    background-color: rgb(147, 174, 197);
     color: #3c3c3c;
     font-size: 20px;
     width: 1018px;
     padding: 20px;
-    margin-bottom: 40px;
+    margin-top: 40px;
     display: flex;
     flex-direction: row;
+    text-transform: uppercase;
+   
 }
 
 .inputs {
     border : none;
     background: none;
 }
+
 .Bearbeitung {
     height:20px;
     width:20px;
 }
+
 td {
     margin-top: 5mm;
     margin-left: 5mm;

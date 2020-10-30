@@ -3,8 +3,7 @@
 }
 
 body {
-    background-image: url('../views/backgroundPicture.jpg');
-    
+    background-image: url('../views/backgroundPicture.jpg'); 
     background-size: cover;
     height: 100%;
     width: 100%;

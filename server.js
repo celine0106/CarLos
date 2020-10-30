@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql2/promise");
 const session = require("express-session");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
@@ -21,6 +22,9 @@ mysql
 
 app.use(express.static("public"));
 app.use(express.json());
+app.use(fileUpload({
+  createParentPath: true
+}));
 
 app.use(
   session({
@@ -55,6 +59,7 @@ app.get("/logout", async (req,res) => {
   return res.status(200).send();
 })
 
+//Daten des angemeldeten Benutzer 
 app.get("/meineDatenAnzeigen", async (req, res) => {
   console.log(req.session.username);
   const [rows] = await connection.execute("SELECT * FROM benutzer where benutzername = ?", [req.session.username]);
@@ -62,6 +67,8 @@ app.get("/meineDatenAnzeigen", async (req, res) => {
 
   res.json(rows);
 });
+
+//erstellte Angebote eines Benutzers
 app.get("/Meineinserate", async (req, res) => {
   console.log(req.session.username);
   const [rows] = await connection.execute("SELECT * FROM angebot WHERE autor =?", [req.session.username]);
@@ -71,6 +78,7 @@ app.get("/Meineinserate", async (req, res) => {
 
 });
 
+//Alle Angebote aus der Datenbank 
 app.get("/angebote", async (req, res) => {
     console.log(req.session.username);
     const [rows] = await connection.execute("SELECT * FROM angebot");
@@ -78,6 +86,15 @@ app.get("/angebote", async (req, res) => {
 
     res.json(rows);
 });
+
+//Angebot einer bestimmten ID
+app.get("/angebotId", async (req, res) =>{
+  const [rows] = await connection.execute("SELECT * FROM angebot WHERE ID =?", [req.body.id]);
+  console.log(rows);
+
+  res.json(rows);
+})
+
 
 app.get("/benutzer", async (req, res) => {
 
@@ -145,8 +162,9 @@ app.patch("/emailaktualisierung", async (req, res) => {
       vorname: req.body.email,
     });
 });
-/*
-app.delete("/todos/:id", async (req, res) => {
+
+// Delete an Angebot 
+app.delete("/angebotLoeschen/:id", async (req, res) => {
   console.log(req.params.id);
 
   const [rows] = await connection.execute("DELETE FROM angebot WHERE id = ?", [
@@ -158,7 +176,7 @@ app.delete("/todos/:id", async (req, res) => {
   } else {
     res.status(404).send();
   }
-});*/
+});
 
 //Insert an Angebot 
 app.post("/meineAngebote", async (req, res) => {
@@ -167,7 +185,7 @@ app.post("/meineAngebote", async (req, res) => {
   ] = await connection.execute(
     "INSERT INTO angebot (Preis, Kilometer, Ort, Erstzulassung, Bild, Beschreibung, Autor, Marke, Modell) \
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]
+    [req.body.preis,req.body.kilometer,req.body.ort,req.body.erstz,req.body.Bild,req.body.bes,req.body.autor,req.body.marke,req.body.modell]
   );
 
   res.json({
@@ -184,6 +202,49 @@ app.post("/meineAngebote", async (req, res) => {
 
 });
 
+app.post('/uploadBild', async (req,res) =>{
+  try {
+    if(!req.files) {
+      res.send({
+        status: false,
+        message: 'No file uploaded!'
+      });
+     } else {
+        let bild = req.files.bild;
+        bild.mv('./public/uploads/' + bild.name);
+        console.log("uploaded");
+        res.send({
+          status: true,
+          message: 'File is uploaded',
+          data: {
+            name: bild.name,
+            mimetype: bild.mimetype,
+            size: bild.size,
+          }
+        });
+    }
+  }
+    catch(err){
+      res.status(500).send(err);
+    }
+});
+//Update an Angebot 
+app.patch("/meinAngebotUpdate/:id", async(req,res) =>{
+
+  const[affectedRows] = await connection.execute ("UPDATE angebot SET Preis = ?, Kilometer = ?, Ort = ?, Erstzulassung = ?, Bild = ?, Beschreibung = ?, Autor = ?, Marke = ?, Modell = ? WHERE ID =?", 
+  [req.body.p,req.body.k,req.body.o,req.body.e,req.body.b,req.body.bes,req.body.a,req.body.m,req.body.mo, req.params.id]);
+  res.json({
+    Preis: req.body.p,
+    Kilometer: req.body.k,
+    Ort: req.body.o,
+    Erstzulassung: req.body.e,
+    Bild: req.body.b,
+    Beschreibung: req.body.bes,
+    Autor: req.body.a,
+    Marke: req.body.m,
+    Modell: req.body.mo,
+  });
+})
 
 
 

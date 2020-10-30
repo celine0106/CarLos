@@ -1,0 +1,13 @@
+.Navigationsleiste {
+    border: 0px none;
+    width: 100%;
+    height: 70px;
+    align-content: center;
+    overflow: hidden; 
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    height: 750px;
+}

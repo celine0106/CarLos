@@ -21,12 +21,13 @@ SET time_zone = "+00:00";
 -- Datenbank: `carlos`
 --
 CREATE DATABASE `carlos`;
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `angebot`
 --
-
+USE `carlos`;
 CREATE TABLE `angebot` (
   `ID` int(10) NOT NULL,
   `Preis` double(8,2) NOT NULL,
@@ -54,7 +55,7 @@ INSERT INTO `angebot` (`ID`, `Preis`, `Kilometer`, `Ort`, `Erstzulassung`, `Bild
 --
 -- Tabellenstruktur für Tabelle `benutzer`
 --
-
+USE `carlos`;
 CREATE TABLE `benutzer` (
   `benutzername` varchar(40) NOT NULL,
   `passwort` varchar(30) NOT NULL,

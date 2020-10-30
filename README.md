@@ -48,7 +48,7 @@ Die Datenbank wird über MySQL angelegt und beinhaltet alle gespeicherten Datens
 Die Datenbank ist aufgebaut durch 2 Tabellen. Die Benutzer Tabelle, in der registrierte Benutzer hinterlegt sind und die Angebot Tabelle, in der angelegte Angebote gepseichert sind.
 Beim erstmaligen importieren der Datenbank befinden sich ebenfalls schon Testdaten in der Datenbank.
 
-![](https://github.com/celine0106/CarLos/blob/master/public/views/DB-Modell_CarLos.jpg)
+![](https://github.com/celine0106/CarLos/blob/master/DB-Modell_CarLos.jpg)
 
 
 

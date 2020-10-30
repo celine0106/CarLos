@@ -1,7 +1,6 @@
 body{
     margin: 0;
     font-family: 'Work Sans', sans-serif;
-    font-weight: 300;
 }
 
 .container{
@@ -77,11 +76,3 @@ nav a:hover::before{
     display: block;
     padding: .5rem;
 }
-
-
-   
-
-
-
-
-

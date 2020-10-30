@@ -122,7 +122,7 @@ fetch("/angemeldet").then ((res) => {
             evt.preventDefault();
             const valuesChange = Object.fromEntries(new FormData(evt.target));
             const inputbd = document.getElementById("bd");
-            if(valuesChange.o == '' || valuesChange.bd === '' || valuesChange.bess === '' || valuesChange.m === '' || valuesChange.mo === '' || valuesChange.e === '' || valuesChange.p === '') {
+            if(valuesChange.o == '' || valuesChange.bes === '' || valuesChange.m === '' || valuesChange.mo === '' || valuesChange.e === '' || valuesChange.p === '') {
               alert("Bitte füllen Sie alle Felder!");
             }
             else {
@@ -131,7 +131,14 @@ fetch("/angemeldet").then ((res) => {
               }
               else {
                 valuesChange.bd = inputbd.files[0].name;
-                console.log(valuesChange.Bild);
+                console.log(valuesChange.bd);
+                const fod = new FormData();
+                fod.append('bild', inputbd.files[0]);
+                console.log(inputbd.files[0]);
+                fetch('/uploadBild', {
+                 method: "post",
+                 body: fod
+                }).then(res => res.json()).then(json => console.log(json)).catch(err => console.error(err));
               }
               
               var km = valuesChange.k;
@@ -145,17 +152,8 @@ fetch("/angemeldet").then ((res) => {
                 "content-type": "application/json",
               },
               }).then((res)=> {
-                window.location="meine-angebote.html";
               console.log(res.status);
-              const fod = new FormData();
-              fod.append('bild', inputbd.files[0]);
-              console.log(inputbd.files[0]);
-              fetch('/uploadBild', {
-                method: "post",
-                body: fod
-              }).then(res => res.json()).then(json => console.log(json)).catch(err => console.error(err));
-                window.location = "meine-angebote.html";
-                
+              window.location = "meine-angebote.html";
               }).catch((e)=>{
                 alert(`Whoops: ${e}`);
               });
@@ -199,7 +197,7 @@ fetch("/angemeldet").then ((res) => {
     evt.preventDefault();
     const values = Object.fromEntries(new FormData(evt.target));
     console.log(values);
-    if(values.ort == '' || values.bild === '' || values.bes === '' || values.marke === '' || values.modell === '' || values.erstz === '' || values.preis === '') {
+    if(values.ort == '' || inputbild.files[0] === undefined || values.bes === '' || values.marke === '' || values.modell === '' || values.erstz === '' || values.preis === '') {
      alert("Bitte füllen Sie alle Felder!");
     }
     else {

@@ -26,7 +26,7 @@ fetch("/angemeldet")
   console.log(res.ok, res.status, res);
       if(res.status === 401){
         alert('Bitte melden Sie sich an um ein Profil erstellen zu können!');
-        window.location = "loginIndex.html";
+        window.location = "login.html";
       }
       else {
         fetch("/meineDatenAnzeigen")

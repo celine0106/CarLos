@@ -44,7 +44,7 @@ button.addEventListener("submit", (evt)=> {
               .then((res)=> {
                 if(res.ok){
                   console.log("success");
-                  window.location = "startseiteindex.html";
+                  window.location = "startseite.html";
                 }
                 else {
                   alert("Sie sind bereits mit einem anderen Benutzernamen angemeldet");
@@ -87,7 +87,7 @@ createForm.addEventListener("submit", (evt) => {
       }
       else {
       console.log(res.ok);
-      window.location = "loginINdex.html";
+      window.location = "login.html";
       }
     });
   
